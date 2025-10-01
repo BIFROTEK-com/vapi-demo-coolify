@@ -1007,17 +1007,60 @@ def public_webapp(
     public_key = settings.public_key
     calendly_link = settings.calendly_link
     
-    # Load SAAS-Agentur config values from SaaS configuration
+    # Load SAAS-Agentur config values from SaaS configuration or environment
     from app.config import get_saas_config
     saas_config = get_saas_config()
     
-    saas_company_name = saas_config.company_name
-    saas_logo_url = saas_config.logo_url
-    saas_website_url = saas_config.website_url
-    support_email = saas_config.support_email
-    impressum_url = saas_config.impressum_url
-    privacy_url = saas_config.privacy_policy_url
-    terms_url = saas_config.terms_url
+    # Check if SaaS config has data, otherwise use environment variables
+    saas_has_data = any([
+        saas_config.company_name,
+        saas_config.logo_url,
+        saas_config.website_url,
+        saas_config.support_email,
+        saas_config.impressum_url,
+        saas_config.privacy_policy_url,
+        saas_config.terms_url,
+        saas_config.hero_title,
+        saas_config.hero_text,
+        saas_config.primary_color and saas_config.primary_color != "#4361ee",
+        saas_config.secondary_color and saas_config.secondary_color != "#3a0ca3",
+        saas_config.accent_color and saas_config.accent_color != "#4cc9f0",
+        saas_config.powered_by_text,
+        saas_config.powered_by_url
+    ])
+    
+    if saas_has_data:
+        # Use SaaS config
+        saas_company_name = saas_config.company_name
+        saas_logo_url = saas_config.logo_url
+        saas_website_url = saas_config.website_url
+        support_email = saas_config.support_email
+        impressum_url = saas_config.impressum_url
+        privacy_url = saas_config.privacy_policy_url
+        terms_url = saas_config.terms_url
+        hero_title = saas_config.hero_title
+        hero_text = saas_config.hero_text
+        primary_color = saas_config.primary_color
+        secondary_color = saas_config.secondary_color
+        accent_color = saas_config.accent_color
+        powered_by_text = saas_config.powered_by_text
+        powered_by_url = saas_config.powered_by_url
+    else:
+        # Use environment variables
+        saas_company_name = os.getenv("COMPANY_NAME", "")
+        saas_logo_url = os.getenv("LOGO_URL", "")
+        saas_website_url = os.getenv("WEBSITE_URL", "")
+        support_email = os.getenv("SUPPORT_EMAIL", "")
+        impressum_url = os.getenv("IMPRESSUM_URL", "")
+        privacy_url = os.getenv("PRIVACY_POLICY_URL", "")
+        terms_url = os.getenv("TERMS_URL", "")
+        hero_title = os.getenv("HERO_TITLE", "")
+        hero_text = os.getenv("HERO_TEXT", "")
+        primary_color = os.getenv("PRIMARY_COLOR", "#4361ee")
+        secondary_color = os.getenv("SECONDARY_COLOR", "#3a0ca3")
+        accent_color = os.getenv("ACCENT_COLOR", "#4cc9f0")
+        powered_by_text = os.getenv("POWERED_BY_TEXT", "")
+        powered_by_url = os.getenv("POWERED_BY_URL", "")
     
     # Extract company name from domain for personalization
     if customer_domain:
@@ -1030,13 +1073,9 @@ def public_webapp(
         if not company_name:  # Default company name when no domain and no company_name
             company_name = "VAPI"
     
-    # Load brand colors from SaaS configuration
-    primary_color = saas_config.primary_color or "#4361ee"    # Default blue
-    secondary_color = saas_config.secondary_color or "#3a0ca3"  # Default dark blue  
-    accent_color = saas_config.accent_color or "#4cc9f0"     # Default light blue
-    
-    # If no colors set in SaaS config, try to extract from customer domain
-    if customer_domain and clean_domain and not saas_config.primary_color:
+    # Brand colors are already loaded above (either from SaaS config or environment)
+    # If no colors set, try to extract from customer domain
+    if customer_domain and clean_domain and not primary_color:
         try:
             # Extract brand colors using the color extractor service
             extracted_primary, extracted_secondary, extracted_accent = extract_brand_colors(clean_domain)
@@ -1063,13 +1102,12 @@ def public_webapp(
     # Personalized configuration based on parameters
     demo_agent_title = f"{company_name} KI-Assistent"
     
-    # Create personalized messages - use SaaS agency config if available
-    if saas_config.hero_title and saas_config.hero_text:
-        # Use SaaS agency configured hero content
-        hero_title = saas_config.hero_title
-        hero_subtitle = saas_config.hero_text
-        welcome_message = f"Willkommen! {saas_config.hero_text}"
-        first_message = f"Hallo! Ich bin Ihr KI-Assistent. {saas_config.hero_text}"
+    # Create personalized messages - use configured hero content if available
+    if hero_title and hero_text:
+        # Use configured hero content
+        hero_subtitle = hero_text
+        welcome_message = f"Willkommen! {hero_text}"
+        first_message = f"Hallo! Ich bin Ihr KI-Assistent. {hero_text}"
     elif customer_name and company_name:
         welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
         first_message = f"Hallo {customer_name}! Ich bin der KI-Assistent von {company_name} und helfe Ihnen gerne bei allen Fragen. Wie kann ich Ihnen behilflich sein?"
@@ -1362,6 +1400,25 @@ def get_env_config_internal() -> dict:
         # Note: privateKey and config_password are not exposed in public APIs for security reasons
     }
 
+def get_env_saas_config_internal() -> dict:
+    """Internal function to get SaaS configuration from environment variables."""
+    return {
+        "companyName": os.getenv("COMPANY_NAME", ""),
+        "logoUrl": os.getenv("LOGO_URL", ""),
+        "websiteUrl": os.getenv("WEBSITE_URL", ""),
+        "supportEmail": os.getenv("SUPPORT_EMAIL", ""),
+        "impressumUrl": os.getenv("IMPRESSUM_URL", ""),
+        "privacyPolicyUrl": os.getenv("PRIVACY_POLICY_URL", ""),
+        "termsUrl": os.getenv("TERMS_URL", ""),
+        "heroTitle": os.getenv("HERO_TITLE", ""),
+        "heroText": os.getenv("HERO_TEXT", ""),
+        "primaryColor": os.getenv("PRIMARY_COLOR", "#4361ee"),
+        "secondaryColor": os.getenv("SECONDARY_COLOR", "#3a0ca3"),
+        "accentColor": os.getenv("ACCENT_COLOR", "#4cc9f0"),
+        "poweredByText": os.getenv("POWERED_BY_TEXT", ""),
+        "poweredByUrl": os.getenv("POWERED_BY_URL", ""),
+    }
+
 
 def get_saas_config_internal() -> dict:
     """Internal function to get SaaS customer configuration."""
@@ -1386,39 +1443,87 @@ def get_saas_config_internal() -> dict:
 
 @app.get("/api/public-config")
 def get_public_config() -> dict:
-    """Public API for frontend configuration - combines infrastructure and SaaS config."""
+    """Public API for frontend configuration - uses either SaaS config OR environment variables."""
     try:
-        # Get infrastructure config (environment variables)
+        # Get infrastructure config (environment variables) - always from env
         env_config = get_env_config_internal()
         
         # Get SaaS config (customer customization)
         saas_config = get_saas_config_internal()
         
-        # Combine both configs, SaaS config takes precedence for overlapping fields
-        return {
-            # Infrastructure config (from environment variables)
-            "assistantId": env_config["assistantId"],
-            "publicKey": env_config["publicKey"],
-            "calendlyLink": env_config["calendlyLink"],
-            "analyzedDomain": env_config["analyzedDomain"],
-            "facebookBusinessWhatsApp": env_config["facebookBusinessWhatsApp"],
-            
-            # SaaS config (from customer configuration)
-            "companyName": saas_config["companyName"],
-            "logoUrl": saas_config["logoUrl"],
-            "websiteUrl": saas_config["websiteUrl"],
-            "supportEmail": saas_config["supportEmail"],
-            "impressumUrl": saas_config["impressumUrl"],
-            "privacyPolicyUrl": saas_config["privacyPolicyUrl"],
-            "termsUrl": saas_config["termsUrl"],
-            "heroTitle": saas_config["heroTitle"],
-            "heroText": saas_config["heroText"],
-            "primaryColor": saas_config["primaryColor"],
-            "secondaryColor": saas_config["secondaryColor"],
-            "accentColor": saas_config["accentColor"],
-            "poweredByText": saas_config["poweredByText"],
-            "poweredByUrl": saas_config["poweredByUrl"],
-        }
+        # Get environment SaaS config
+        env_saas_config = get_env_saas_config_internal()
+        
+        # Check if SaaS config has any non-empty values
+        saas_has_data = any([
+            saas_config["companyName"],
+            saas_config["logoUrl"], 
+            saas_config["websiteUrl"],
+            saas_config["supportEmail"],
+            saas_config["impressumUrl"],
+            saas_config["privacyPolicyUrl"],
+            saas_config["termsUrl"],
+            saas_config["heroTitle"],
+            saas_config["heroText"],
+            saas_config["primaryColor"] and saas_config["primaryColor"] != "#4361ee",
+            saas_config["secondaryColor"] and saas_config["secondaryColor"] != "#3a0ca3", 
+            saas_config["accentColor"] and saas_config["accentColor"] != "#4cc9f0",
+            saas_config["poweredByText"],
+            saas_config["poweredByUrl"]
+        ])
+        
+        if saas_has_data:
+            # Use SaaS config completely
+            return {
+                # Infrastructure config (always from environment)
+                "assistantId": env_config["assistantId"],
+                "publicKey": env_config["publicKey"],
+                "calendlyLink": env_config["calendlyLink"],
+                "analyzedDomain": env_config["analyzedDomain"],
+                "facebookBusinessWhatsApp": env_config["facebookBusinessWhatsApp"],
+                
+                # SaaS config (from customer configuration)
+                "companyName": saas_config["companyName"],
+                "logoUrl": saas_config["logoUrl"],
+                "websiteUrl": saas_config["websiteUrl"],
+                "supportEmail": saas_config["supportEmail"],
+                "impressumUrl": saas_config["impressumUrl"],
+                "privacyPolicyUrl": saas_config["privacyPolicyUrl"],
+                "termsUrl": saas_config["termsUrl"],
+                "heroTitle": saas_config["heroTitle"],
+                "heroText": saas_config["heroText"],
+                "primaryColor": saas_config["primaryColor"],
+                "secondaryColor": saas_config["secondaryColor"],
+                "accentColor": saas_config["accentColor"],
+                "poweredByText": saas_config["poweredByText"],
+                "poweredByUrl": saas_config["poweredByUrl"],
+            }
+        else:
+            # Use environment variables completely
+            return {
+                # Infrastructure config (from environment variables)
+                "assistantId": env_config["assistantId"],
+                "publicKey": env_config["publicKey"],
+                "calendlyLink": env_config["calendlyLink"],
+                "analyzedDomain": env_config["analyzedDomain"],
+                "facebookBusinessWhatsApp": env_config["facebookBusinessWhatsApp"],
+                
+                # SaaS config (from environment variables)
+                "companyName": env_saas_config["companyName"],
+                "logoUrl": env_saas_config["logoUrl"],
+                "websiteUrl": env_saas_config["websiteUrl"],
+                "supportEmail": env_saas_config["supportEmail"],
+                "impressumUrl": env_saas_config["impressumUrl"],
+                "privacyPolicyUrl": env_saas_config["privacyPolicyUrl"],
+                "termsUrl": env_saas_config["termsUrl"],
+                "heroTitle": env_saas_config["heroTitle"],
+                "heroText": env_saas_config["heroText"],
+                "primaryColor": env_saas_config["primaryColor"],
+                "secondaryColor": env_saas_config["secondaryColor"],
+                "accentColor": env_saas_config["accentColor"],
+                "poweredByText": env_saas_config["poweredByText"],
+                "poweredByUrl": env_saas_config["poweredByUrl"],
+            }
     except Exception as e:
         return {"error": "Configuration not available"}
 
