@@ -1,0 +1,96 @@
+    # Coolify MySQL Environment Variables für Shlink
+    # Kopieren Sie diese Variablen in Coolify
+
+    # ===========================================
+    # MYSQL DATABASE CONFIGURATION
+    # ===========================================
+    MYSQL_ROOT_PASSWORD=shlink_root_password_2024
+    MYSQL_DATABASE=shlink
+    MYSQL_USER=shlink_user
+    MYSQL_PASSWORD=shlink_secure_password_2024
+
+    # ===========================================
+    # SHLINK CORE CONFIGURATION (Required)
+    # ===========================================
+    DEFAULT_DOMAIN=demo.bifrotek.com
+    IS_HTTPS_ENABLED=true
+    GEOLITE_LICENSE_KEY=your_geolite_license_key_here
+    INITIAL_API_KEY=0f44e6fa0477e39539b988adf1c36510234606718cda43f8a037c6fc0dc451c3
+
+    # ===========================================
+    # DATABASE CONFIGURATION (MySQL)
+    # ===========================================
+    DB_DRIVER=mysql
+    DB_HOST=mysql
+    DB_USER=shlink_user
+    DB_PASSWORD=shlink_secure_password_2024
+    DB_NAME=shlink
+    DB_PORT=3306
+    DB_USE_ENCRYPTION=true
+
+    # ===========================================
+    # GENERAL CONFIGURATION
+    # ===========================================
+    TIMEZONE=Europe/Berlin
+    LOGS_FORMAT=json
+    MEMORY_LIMIT=512M
+
+    # ===========================================
+    # URL SHORTENING CONFIGURATION
+    # ===========================================
+    DEFAULT_SHORT_CODES_LENGTH=5
+    AUTO_RESOLVE_TITLES=true
+    DELETE_SHORT_URL_THRESHOLD=0
+
+    # ===========================================
+    # REDIRECTS CONFIGURATION
+    # ===========================================
+    REDIRECT_STATUS_CODE=302
+    REDIRECT_CACHE_LIFETIME=30
+    REDIRECT_EXTRA_PATH_MODE=append
+
+    # ===========================================
+    # QR CODE CONFIGURATION
+    # ===========================================
+    DEFAULT_QR_CODE_SIZE=300
+    DEFAULT_QR_CODE_MARGIN=1
+    DEFAULT_QR_CODE_FORMAT=png
+    DEFAULT_QR_CODE_ERROR_CORRECTION=L
+    DEFAULT_QR_CODE_ROUND_BLOCK_SIZE=true
+    QR_CODE_FOR_DISABLED_SHORT_URLS=true
+
+    # ===========================================
+    # PERFORMANCE CONFIGURATION
+    # ===========================================
+    REDIS_SERVERS=redis://redis:6379
+    REDIS_PUBLIC_IP=redis
+    REDIS_SENTINEL_SERVICE=shlink
+
+    # ===========================================
+    # SECURITY CONFIGURATION
+    # ===========================================
+    CORS_ALLOW_ORIGINS=*
+    CORS_ALLOW_HEADERS=*
+    CORS_ALLOW_METHODS=*
+    CORS_MAX_AGE=3600
+
+    # ===========================================
+    # MONITORING CONFIGURATION
+    # ===========================================
+    ENABLE_METRICS=true
+    METRICS_DRIVER=prometheus
+    METRICS_ENDPOINT=/metrics
+
+    # ===========================================
+    # LOGGING CONFIGURATION
+    # ===========================================
+    LOG_LEVEL=info
+    LOG_FORMAT=json
+    LOG_FILE=/var/log/shlink.log
+
+    # ===========================================
+    # REDIS CONFIGURATION (Optional)
+    # ===========================================
+    REDIS_MAXMEMORY=256mb
+    REDIS_MAXMEMORY_POLICY=allkeys-lru
+    REDIS_APPENDONLY=yes

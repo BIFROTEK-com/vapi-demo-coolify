@@ -1,0 +1,45 @@
+{
+  "name": "vapi-demo-builder",
+  "description": "VAPI Demo Builder with integrated Redis and Shlink",
+  "version": "1.0.0",
+  "type": "docker-compose",
+  "services": {
+    "vapi-demo": {
+      "type": "application",
+      "port": 8000,
+      "healthcheck": "/health",
+      "environment": {
+        "required": [
+          "ASSISTANT_ID",
+          "PUBLIC_KEY",
+          "VAPI_PRIVATE_KEY"
+        ],
+        "optional": [
+          "CONFIG_PASSWORD",
+          "COMPANY_NAME",
+          "SUPPORT_EMAIL",
+          "FACEBOOK_BUSINESS_WHATSAPP",
+          "CALENDLY_LINK",
+          "REDIS_PASSWORD",
+          "SHLINK_DOMAIN",
+          "SHLINK_HTTPS",
+          "GEOLITE_LICENSE_KEY"
+        ]
+      }
+    }
+  },
+  "networks": {
+    "vapi-network": {
+      "driver": "bridge"
+    }
+  },
+  "volumes": {
+    "redis_data": "local",
+    "shlink_data": "local",
+    "shlink_db_data": "local"
+  },
+  "deployment": {
+    "strategy": "recreate",
+    "restart_policy": "unless-stopped"
+  }
+}

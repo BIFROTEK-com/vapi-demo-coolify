@@ -1,0 +1,802 @@
+[
+  {
+    "short_url": "https://demo.bifrotek.com/deepspin",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/deepspin",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=deepspin.io&customer_name=Sehrish Ansari&customer_email=sehrish.ansari@deepspin.io&company name=DeepSpin",
+      "company": "DeepSpin",
+      "full_name": "Sehrish Ansari"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/tmgavia",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/tmgavia",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=tmgavia.com&customer_name=Ignas Klimavičius&customer_email=ignas@tmgavia.com&company name=TMG Avia",
+      "company": "TMG Avia",
+      "full_name": "Ignas Klimavičius"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/digitalzolutions",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/digitalzolutions",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=digital-zolutions.de&customer_name=Philipp R. Stegmann&customer_email=philipp@digital-zolutions.de&company name=Digital Zolutions",
+      "company": "Digital Zolutions",
+      "full_name": "Philipp R. Stegmann"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/proecorheinland",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/proecorheinland",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=proeco-rheinland.de&customer_name=Sven Wiechert&customer_email=sven.wiechert@proeco-rheinland.de&company name=ProEco Rheinland",
+      "company": "ProEco Rheinland",
+      "full_name": "Sven Wiechert"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/pinkmattereurope",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/pinkmattereurope",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=pinkmatter.com&customer_name=Christelle Jordaan&customer_email=christelle.jordaan@pinkmatter.com&company name=Pinkmatter Europe • space • earth • intelligence •",
+      "company": "Pinkmatter Europe • space • earth • intelligence •",
+      "full_name": "Christelle Jordaan"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/thepeople",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/thepeople",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=thepeoplebrandingcompany.com&customer_name=Sabina Iwona Pawlowska&customer_email=sabina@peoplebrandingcompany.com&company name=The People Branding Company",
+      "company": "The People Branding Company",
+      "full_name": "Sabina Iwona Pawlowska"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/stadionwelt",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/stadionwelt",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=stadionwelt.de&customer_name=Christopher Pauer&customer_email=pauer@stadionwelt.de&company name=Stadionwelt",
+      "company": "Stadionwelt",
+      "full_name": "Christopher Pauer"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/timelinesai",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/timelinesai",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=timelines.ai&customer_name=Eli Weiss&customer_email=eli.weiss@timelines.ai&company name=TimelinesAI",
+      "company": "TimelinesAI",
+      "full_name": "Eli Weiss"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/wolftechnikfiltersysteme",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/wolftechnikfiltersysteme",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=wolftechnik.de&customer_name=Stefan Wagner&customer_email=wagner@wolftechnik.de&company name=Wolftechnik Filtersysteme GmbH & Co. KG",
+      "company": "Wolftechnik Filtersysteme GmbH & Co. KG",
+      "full_name": "Stefan Wagner"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/kanzleimichaelis",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/kanzleimichaelis",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=kanzlei-michaelis.de&customer_name=Peter Pachmann&customer_email=pachmann@kanzlei-michaelis.de&company name=Kanzlei Michaelis Rechtsanwälte",
+      "company": "Kanzlei Michaelis Rechtsanwälte",
+      "full_name": "Peter Pachmann"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/bg3000service",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/bg3000service",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=bg3000.de&customer_name=Verena Gemmel&customer_email=vg@bg3000.de&company name=BG3000 Service GmbH",
+      "company": "BG3000 Service GmbH",
+      "full_name": "Verena Gemmel"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/germandeep",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/germandeep",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=germandeeptech.group&customer_name=Oliver Viel&customer_email=oliver@germandeeptech.group&company name=German Deep Tech Group",
+      "company": "German Deep Tech Group",
+      "full_name": "Oliver Viel"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/orangequarter",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/orangequarter",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=orange-quarter.com&customer_name=Thomas Long&customer_email=tom@orange-quarter.com&company name=Orange Quarter",
+      "company": "Orange Quarter",
+      "full_name": "Thomas Long"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/eshopguide",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/eshopguide",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=eshop-guide.de&customer_name=Daniel Dintinger&customer_email=daniel@eshop-guide.de&company name=Eshop Guide - Die Shopify Plus Agentur",
+      "company": "Eshop Guide - Die Shopify Plus Agentur",
+      "full_name": "Daniel Dintinger"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/worldclass",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/worldclass",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=worldclassbusinessleaders.com&customer_name=Josephin Reball&customer_email=josephin.reball@wcbleaders.com&company name=World Class Business Leaders",
+      "company": "World Class Business Leaders",
+      "full_name": "Josephin Reball"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/scaleup",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/scaleup",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=scaleup.de&customer_name=Katrin Wietek&customer_email=katrin.wietek@scaleup.de&company name=scale up",
+      "company": "scale up",
+      "full_name": "Katrin Wietek"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/timelinesai",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/timelinesai",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=timelines.ai&customer_name=Robert Fridman&customer_email=robert.fridman@timelines.ai&company name=TimelinesAI",
+      "company": "TimelinesAI",
+      "full_name": "Robert Fridman"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/etsystem",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/etsystem",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=et-system.de&customer_name=Roland Kosmowski&customer_email=kosmowski.roland@et-system.de&company name=ET System electronic GmbH",
+      "company": "ET System electronic GmbH",
+      "full_name": "Roland Kosmowski"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/krohnemarine",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/krohnemarine",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=krohne-marine.com&customer_name=Ralf Dopieralla&customer_email=r.dopieralla@krohne.com&company name=KROHNE Marine",
+      "company": "KROHNE Marine",
+      "full_name": "Ralf Dopieralla"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/lingosystems",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/lingosystems",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=lingosystems.de&customer_name=Steffen Garnich&customer_email=steffen.garnich@lingosystems.de&company name=lingo systems",
+      "company": "lingo systems",
+      "full_name": "Steffen Garnich"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/shigmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/shigmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=shi-gmbh.com&customer_name=Michael Anger&customer_email=michael.anger@shi-gmbh.com&company name=SHI GmbH",
+      "company": "SHI GmbH",
+      "full_name": "Michael Anger"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/hysopt",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/hysopt",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=hysopt.com&customer_name=Brian Wimberley&customer_email=brian@hysopt.com&company name=Hysopt",
+      "company": "Hysopt",
+      "full_name": "Brian Wimberley"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/undconsorten",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/undconsorten",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=undconsorten.de&customer_name=Florian Kobler &customer_email=florian.kobler@undconsorten.de&company name=undconsorten",
+      "company": "undconsorten",
+      "full_name": "Florian Kobler"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/robincook",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/robincook",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=robin-cook.de&customer_name=Tyrone Smith&customer_email=smith@robin-cook.de&company name=Robin Cook",
+      "company": "Robin Cook",
+      "full_name": "Tyrone Smith"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/germandronesgmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/germandronesgmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=germandrones.com&customer_name=Sid Venkat&customer_email=s.venkat@germandrones.com&company name=Germandrones GmbH",
+      "company": "Germandrones GmbH",
+      "full_name": "Sid Venkat"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/dash0",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/dash0",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=dash0.com&customer_name=Marcel Sim&customer_email=marcel@dash0.com&company name=Dash0",
+      "company": "Dash0",
+      "full_name": "Marcel Sim"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/sophrosynesemiconductor",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/sophrosynesemiconductor",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=sophrosynesemi.com&customer_name=Uttam Panda&customer_email=uttam.p@sophrosynetech.com&company name=Sophrosyne Semiconductor",
+      "company": "Sophrosyne Semiconductor",
+      "full_name": "Uttam Panda"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/unaicegmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/unaicegmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=unaice.com&customer_name=Rosella Wenninger&customer_email=rosellawenninger@unaice.de&company name=uNaice GmbH",
+      "company": "uNaice GmbH",
+      "full_name": "Rosella Wenninger"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/ellabiotech",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/ellabiotech",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=ellabiotech.com&customer_name=Luke McLaughlin&customer_email=&company name=Ella Biotech GmbH",
+      "company": "Ella Biotech GmbH",
+      "full_name": "Luke McLaughlin"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/naise",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/naise",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=naise.eu&customer_name=Olga P.&customer_email=olga@naise.eu&company name=NAiSE",
+      "company": "NAiSE",
+      "full_name": "Olga P."
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/retorio",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/retorio",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=retorio.com&customer_name=Peter Holdenried&customer_email=peter@retorio.com&company name=Retorio",
+      "company": "Retorio",
+      "full_name": "Peter Holdenried"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/wttcampusone",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/wttcampusone",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=wtt-campusone.com&customer_name=Latifa Anita Warrelmann&customer_email=latifa.warrelmann@wtt-campusone.com&company name=WTT CampusONE GmbH",
+      "company": "WTT CampusONE GmbH",
+      "full_name": "Latifa Anita Warrelmann"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/pensexpertgmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/pensexpertgmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=pensexpert.de&customer_name=Lars Henning&customer_email=lars.henning@pensexpert.de&company name=PensExpert GmbH",
+      "company": "PensExpert GmbH",
+      "full_name": "Lars Henning"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/systrionag",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/systrionag",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=systrion.com&customer_name=Florian F.&customer_email=florian.forstmair@systrion.com&company name=Systrion AG",
+      "company": "Systrion AG",
+      "full_name": "Florian F."
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/welcome24",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/welcome24",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=w24.agency&customer_name=Anastasia Dmitrieva&customer_email=&company name=WELCOME 24",
+      "company": "WELCOME 24",
+      "full_name": "Anastasia Dmitrieva"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/expatrio",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/expatrio",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=expatrio.com&customer_name=Anastasia Meier&customer_email=anastasia@expatrio.com&company name=Expatrio",
+      "company": "Expatrio",
+      "full_name": "Anastasia Meier"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/globalsolutions",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/globalsolutions",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=global-solutions-initiative.org&customer_name=Raghad Alrosan&customer_email=&company name=Global Solutions Initiative",
+      "company": "Global Solutions Initiative",
+      "full_name": "Raghad Alrosan"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/ellabiotech",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/ellabiotech",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=ellabiotech.com&customer_name=Luke McLaughlin&customer_email=&company name=Ella Biotech GmbH",
+      "company": "Ella Biotech GmbH",
+      "full_name": "Luke McLaughlin"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/opensc",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/opensc",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=opensc.org&customer_name=Lais Beltrão&customer_email=lais.beltrao@opensc.org&company name=OpenSC",
+      "company": "OpenSC",
+      "full_name": "Lais Beltrão"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/greenplaces",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/greenplaces",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=Sven Koch&customer_email=&company name=GreenPlaces",
+      "company": "GreenPlaces",
+      "full_name": "Sven Koch"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/timelinesai",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/timelinesai",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=timelines.ai&customer_name=Dmitry Levinsky&customer_email=&company name=TimelinesAI",
+      "company": "TimelinesAI",
+      "full_name": "Dmitry Levinsky"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/wunderpengmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/wunderpengmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=wunderpen.com&customer_name=Dominic Kramer&customer_email=dominic.kramer@wunderpen.com&company name=Wunderpen GmbH",
+      "company": "Wunderpen GmbH",
+      "full_name": "Dominic Kramer"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/pionix",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/pionix",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=pionix.com&customer_name=York Kolb&customer_email=&company name=Pionix",
+      "company": "Pionix",
+      "full_name": "York Kolb"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/urbanetgmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/urbanetgmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=urbanet-hamburg.de&customer_name=Philipp Mann&customer_email=&company name=Urbanet GmbH",
+      "company": "Urbanet GmbH",
+      "full_name": "Philipp Mann"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/partecag",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/partecag",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=par-tec.com&customer_name=Shah Bano Kamran&customer_email=&company name=ParTec AG",
+      "company": "ParTec AG",
+      "full_name": "Shah Bano Kamran"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/omt",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/omt",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=omt.de&customer_name=Tim Goger &customer_email=tim.goger@omt.de&company name=OMT",
+      "company": "OMT",
+      "full_name": "Tim Goger"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/ridecapital",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/ridecapital",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=ride.capital&customer_name=René Winklbauer&customer_email=&company name=RIDE Capital",
+      "company": "RIDE Capital",
+      "full_name": "René Winklbauer"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/wunderpengmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/wunderpengmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=wunderpen.com&customer_name=Moritz Westerkamp&customer_email=&company name=Wunderpen GmbH",
+      "company": "Wunderpen GmbH",
+      "full_name": "Moritz Westerkamp"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/assemblean",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/assemblean",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=assemblean.com&customer_name=Ashish Alexander&customer_email=&company name=assemblean",
+      "company": "assemblean",
+      "full_name": "Ashish Alexander"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/visitberlinberlin",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/visitberlinberlin",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=visitberlin.de&customer_name=Simon Hiebenga&customer_email=&company name=visitBerlin – Berlin Convention Office",
+      "company": "visitBerlin – Berlin Convention Office",
+      "full_name": "Simon Hiebenga"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/horizon",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/horizon",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=gethorizon.net&customer_name=Sophia Burns&customer_email=&company name=Horizon",
+      "company": "Horizon",
+      "full_name": "Sophia Burns"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/expatrio",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/expatrio",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=expatrio.com&customer_name=Ekaterina Zenkevich &customer_email=&company name=Expatrio",
+      "company": "Expatrio",
+      "full_name": "Ekaterina Zenkevich"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/mediafrankfurt",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/mediafrankfurt",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=media-frankfurt.de&customer_name=Peer Schmitz-Kuo&customer_email=&company name=Media Frankfurt GmbH",
+      "company": "Media Frankfurt GmbH",
+      "full_name": "Peer Schmitz-Kuo"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/hootssensorsystems",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/hootssensorsystems",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=hoots.de&customer_name=Robert Noack&customer_email=&company name=HOOTS sensorsystems",
+      "company": "HOOTS sensorsystems",
+      "full_name": "Robert Noack"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=hubs.li&customer_name=Rofayda Tarek&customer_email=&company name=أعناب",
+      "company": "أعناب",
+      "full_name": "Rofayda Tarek"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/foodvibez",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/foodvibez",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=foodvibez.com&customer_name=Stephanie Sendler&customer_email=&company name=FOODVIBEZ",
+      "company": "FOODVIBEZ",
+      "full_name": "Stephanie Sendler"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/divisionone",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/divisionone",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=division-one.com&customer_name=Aylin Özdemir&customer_email=&company name=division one",
+      "company": "division one",
+      "full_name": "Aylin Özdemir"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/implecogmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/implecogmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=impleco.de&customer_name=Wolfgang Köhler&customer_email=&company name=Impleco GmbH",
+      "company": "Impleco GmbH",
+      "full_name": "Wolfgang Köhler"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/neuroflash",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/neuroflash",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=neuroflash.com&customer_name=Gordian Ratajczak&customer_email=&company name=neuroflash",
+      "company": "neuroflash",
+      "full_name": "Gordian Ratajczak"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/alpynelectronics",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/alpynelectronics",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=alpynelectronics.com&customer_name=Thomas Mayr&customer_email=&company name=ALPYN electronics GmbH",
+      "company": "ALPYN electronics GmbH",
+      "full_name": "Thomas Mayr"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/dash0",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/dash0",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=dash0.com&customer_name=Michele Mancioppi&customer_email=&company name=Dash0",
+      "company": "Dash0",
+      "full_name": "Michele Mancioppi"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/famedlygmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/famedlygmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=famedly.com&customer_name=Marcel Gaudlitz&customer_email=&company name=Famedly GmbH",
+      "company": "Famedly GmbH",
+      "full_name": "Marcel Gaudlitz"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/upscoregmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/upscoregmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=upscore.com&customer_name=Christopher Zippert&customer_email=&company name=Upscore GmbH",
+      "company": "Upscore GmbH",
+      "full_name": "Christopher Zippert"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/wunderpengmbh",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/wunderpengmbh",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=wunderpen.com&customer_name=Richard Forkel&customer_email=&company name=Wunderpen GmbH",
+      "company": "Wunderpen GmbH",
+      "full_name": "Richard Forkel"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/fairtrademesse",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/fairtrademesse",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=fairtrade-messe.de&customer_name=Luca Leiser&customer_email=&company name=fairtrade Messe",
+      "company": "fairtrade Messe",
+      "full_name": "Luca Leiser"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/monda",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/monda",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=monda.ai&customer_name=Tamara Joy Omomo&customer_email=&company name=Monda",
+      "company": "Monda",
+      "full_name": "Tamara Joy Omomo"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/fyrfeed",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/fyrfeed",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=fyrfeed.com&customer_name=Tanja Krause&customer_email=&company name=fyrfeed",
+      "company": "fyrfeed",
+      "full_name": "Tanja Krause"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/gmvkprocurement",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/gmvkprocurement",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=gmvk.de&customer_name=Felix Dalstein&customer_email=&company name=GMVK Procurement GmbH",
+      "company": "GMVK Procurement GmbH",
+      "full_name": "Felix Dalstein"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/fyrfeed",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/fyrfeed",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=fyrfeed.com&customer_name=Nico Seidel&customer_email=&company name=fyrfeed",
+      "company": "fyrfeed",
+      "full_name": "Nico Seidel"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/cyberdisecybersecurity",
+    "reason": "API call failed",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/cyberdisecybersecurity",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=cyberdise-awareness.com&customer_name=Nuray Kenzhebek&customer_email=&company name=CYBERDISE | Cybersecurity Awareness",
+      "company": "CYBERDISE | Cybersecurity Awareness",
+      "full_name": "Nuray Kenzhebek"
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  },
+  {
+    "short_url": "https://demo.bifrotek.com/",
+    "reason": "No company info in URL",
+    "link_data": {
+      "shortlink": "https://demo.bifrotek.com/",
+      "longlink": "https://custom-demo.bifrotek.com/webapp?customer_domain=&customer_name=&customer_email=&company name=",
+      "company": "",
+      "full_name": ""
+    }
+  }
+]

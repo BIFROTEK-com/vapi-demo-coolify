@@ -1,0 +1,61 @@
+services:
+  shlink:
+    image: shlinkio/shlink:stable
+    container_name: shlink
+    restart: unless-stopped
+    environment:
+      # Shlink Core Configuration (Required)
+      - DEFAULT_DOMAIN=demo.bifrotek.com
+      - IS_HTTPS_ENABLED=true
+      - GEOLITE_LICENSE_KEY=your_geolite_license_key_here
+      - INITIAL_API_KEY=0f44e6fa0477e39539b988adf1c36510234606718cda43f8a037c6fc0dc451c3
+      
+      # General Configuration
+      - TIMEZONE=Europe/Berlin
+      - LOGS_FORMAT=json
+      - MEMORY_LIMIT=512M
+      
+      # URL Shortening Configuration
+      - DEFAULT_SHORT_CODES_LENGTH=5
+      - AUTO_RESOLVE_TITLES=true
+      - DELETE_SHORT_URL_THRESHOLD=0
+      
+      # Redirects Configuration
+      - REDIRECT_STATUS_CODE=302
+      - REDIRECT_CACHE_LIFETIME=30
+      - REDIRECT_EXTRA_PATH_MODE=append
+      
+      # QR Code Configuration (Deprecated but still supported)
+      - DEFAULT_QR_CODE_SIZE=300
+      - DEFAULT_QR_CODE_MARGIN=1
+      - DEFAULT_QR_CODE_FORMAT=png
+      - DEFAULT_QR_CODE_ERROR_CORRECTION=L
+      - DEFAULT_QR_CODE_ROUND_BLOCK_SIZE=true
+      - QR_CODE_FOR_DISABLED_SHORT_URLS=true
+      
+      # Optional: Database Configuration (SQLite by default)
+      # Uncomment and configure for production with external database
+      # - DB_DRIVER=mysql
+      # - DB_HOST=your-mysql-host
+      # - DB_USER=shlink_user
+      # - DB_PASSWORD=your-password
+      # - DB_NAME=shlink
+      # - DB_PORT=3306
+      # - DB_USE_ENCRYPTION=false
+    
+    volumes:
+      - shlink_data:/var/www/html/data
+    
+    ports:
+      - "8081:8080"
+    
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/rest/v3/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  shlink_data:
+    driver: local

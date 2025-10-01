@@ -1,0 +1,71 @@
+services:
+  # VAPI Demo Application - Main Service
+  vapi-demo:
+    build: .
+    container_name: vapi-demo-app
+    ports:
+      - "8000:8000"
+    environment:
+      # VAPI Configuration (from Coolify secrets)
+      - ASSISTANT_ID=${ASSISTANT_ID:-4eea01cc-58fc-4ed7-b5bf-6b2e94952e8f}
+      - PUBLIC_KEY=${PUBLIC_KEY:-b6ee00e6-ad19-4a0b-8058-ffbe54069dc4}
+      - VAPI_PRIVATE_KEY=${VAPI_PRIVATE_KEY:-8258d38b-0ac9-4c74-a423-3bbdc7b54d17}
+      
+      # App Configuration
+      - CONFIG_PASSWORD=${CONFIG_PASSWORD:-mysecurepasswortTalocan12!}
+      - COMPANY_NAME=${COMPANY_NAME:-BIFROTEK}
+      - SUPPORT_EMAIL=${SUPPORT_EMAIL:-info@bifrotek.com}
+      
+      # Website & Branding
+      - WEBSITE_URL=${WEBSITE_URL:-https://bifrotek.com}
+      - IMPRESSUM_URL=${IMPRESSUM_URL:-https://bifrotek.com/impressum}
+      - PRIVACY_POLICY_URL=${PRIVACY_POLICY_URL:-https://bifrotek.com/datenschutz}
+      - TERMS_URL=${TERMS_URL:-https://bifrotek.com/terms}
+      - PRIMARY_COLOR=${PRIMARY_COLOR:-#b4b9bc}
+      - SECONDARY_COLOR=${SECONDARY_COLOR:-#9ca3af}
+      - ACCENT_COLOR=${ACCENT_COLOR:-#d1d5db}
+      - LOGO_URL=${LOGO_URL:-https://bifrotek.com/logo.png}
+      
+      # Contact Options
+      - CALENDLY_LINK=${CALENDLY_LINK:-https://calendly.com/oliver-spitzkat-wsp/30min}
+      - FACEBOOK_BUSINESS_WHATSAPP=${FACEBOOK_BUSINESS_WHATSAPP:-}
+      
+      # Redis Configuration (INTERNAL Redis Container)
+      - REDIS_URL=redis://redis:6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-vapi_redis_password}
+      
+      # Shlink Configuration (DISABLED - use external service)
+      - SHLINK_API_KEY=
+      - SHLINK_BASE_URL=
+      
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Redis for session management
+  redis:
+    image: redis:7-alpine
+    container_name: vapi-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-vapi_redis_password}
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-vapi_redis_password}", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local

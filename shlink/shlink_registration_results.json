@@ -1,0 +1,515 @@
+[
+  {
+    "demo_url": "https://demo.bifrotek.com/deepspin",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=deepspin.io&customer_name=Sehrish Ansari&customer_email=sehrish.ansari@deepspin.io&company name=DeepSpin",
+    "short_url": "https://demo.bifrotek.com/demo-deepspin",
+    "short_code": "demo-deepspin",
+    "customer_info": {
+      "domain": "deepspin.io",
+      "name": "Sehrish Ansari",
+      "email": "sehrish.ansari@deepspin.io",
+      "company": "DeepSpin"
+    },
+    "title": "DeepSpin Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "deepspin",
+      "deepspin-io"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/tmgavia",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=tmgavia.com&customer_name=Ignas Klimavičius&customer_email=ignas@tmgavia.com&company name=TMG Avia",
+    "short_url": "https://demo.bifrotek.com/demo-tmgavia",
+    "short_code": "demo-tmgavia",
+    "customer_info": {
+      "domain": "tmgavia.com",
+      "name": "Ignas Klimavičius",
+      "email": "ignas@tmgavia.com",
+      "company": "TMG Avia"
+    },
+    "title": "TMG Avia Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "tmg-avia",
+      "tmgavia-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/digitalzolutions",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=digital-zolutions.de&customer_name=Philipp R. Stegmann&customer_email=philipp@digital-zolutions.de&company name=Digital Zolutions",
+    "short_url": "https://demo.bifrotek.com/demo-digitalzolutions",
+    "short_code": "demo-digitalzolutions",
+    "customer_info": {
+      "domain": "digital-zolutions.de",
+      "name": "Philipp R. Stegmann",
+      "email": "philipp@digital-zolutions.de",
+      "company": "Digital Zolutions"
+    },
+    "title": "Digital Zolutions Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "digital-zolutions",
+      "digital-zolutions-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/proecorheinland",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=proeco-rheinland.de&customer_name=Sven Wiechert&customer_email=sven.wiechert@proeco-rheinland.de&company name=ProEco Rheinland",
+    "short_url": "https://demo.bifrotek.com/demo-proecorheinland",
+    "short_code": "demo-proecorheinland",
+    "customer_info": {
+      "domain": "proeco-rheinland.de",
+      "name": "Sven Wiechert",
+      "email": "sven.wiechert@proeco-rheinland.de",
+      "company": "ProEco Rheinland"
+    },
+    "title": "ProEco Rheinland Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "proeco-rheinland",
+      "proeco-rheinland-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/pinkmattereurope",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=pinkmatter.com&customer_name=Christelle Jordaan&customer_email=christelle.jordaan@pinkmatter.com&company name=Pinkmatter Europe • space • earth • intelligence •",
+    "short_url": "https://demo.bifrotek.com/demo-pinkmattereurope",
+    "short_code": "demo-pinkmattereurope",
+    "customer_info": {
+      "domain": "pinkmatter.com",
+      "name": "Christelle Jordaan",
+      "email": "christelle.jordaan@pinkmatter.com",
+      "company": "Pinkmatter Europe • space • earth • intelligence •"
+    },
+    "title": "Pinkmatter Europe • space • earth • intelligence • Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "pinkmatter-europe--space--earth--intelligence-",
+      "pinkmatter-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/thepeople",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=thepeoplebrandingcompany.com&customer_name=Sabina Iwona Pawlowska&customer_email=sabina@peoplebrandingcompany.com&company name=The People Branding Company",
+    "short_url": "https://demo.bifrotek.com/demo-thepeople",
+    "short_code": "demo-thepeople",
+    "customer_info": {
+      "domain": "thepeoplebrandingcompany.com",
+      "name": "Sabina Iwona Pawlowska",
+      "email": "sabina@peoplebrandingcompany.com",
+      "company": "The People Branding Company"
+    },
+    "title": "The People Branding Company Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "the-people-branding-company",
+      "thepeoplebrandingcompany-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/stadionwelt",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=stadionwelt.de&customer_name=Christopher Pauer&customer_email=pauer@stadionwelt.de&company name=Stadionwelt",
+    "short_url": "https://demo.bifrotek.com/demo-stadionwelt",
+    "short_code": "demo-stadionwelt",
+    "customer_info": {
+      "domain": "stadionwelt.de",
+      "name": "Christopher Pauer",
+      "email": "pauer@stadionwelt.de",
+      "company": "Stadionwelt"
+    },
+    "title": "Stadionwelt Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "stadionwelt",
+      "stadionwelt-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/timelinesai",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=timelines.ai&customer_name=Eli Weiss&customer_email=eli.weiss@timelines.ai&company name=TimelinesAI",
+    "short_url": "https://demo.bifrotek.com/demo-timelinesai",
+    "short_code": "demo-timelinesai",
+    "customer_info": {
+      "domain": "timelines.ai",
+      "name": "Eli Weiss",
+      "email": "eli.weiss@timelines.ai",
+      "company": "TimelinesAI"
+    },
+    "title": "TimelinesAI Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "timelinesai",
+      "timelines-ai"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/wolftechnikfiltersysteme",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=wolftechnik.de&customer_name=Stefan Wagner&customer_email=wagner@wolftechnik.de&company name=Wolftechnik Filtersysteme GmbH & Co. KG",
+    "short_url": "https://demo.bifrotek.com/demo-wolftechnikfiltersysteme",
+    "short_code": "demo-wolftechnikfiltersysteme",
+    "customer_info": {
+      "domain": "wolftechnik.de",
+      "name": "Stefan Wagner",
+      "email": "wagner@wolftechnik.de",
+      "company": "Wolftechnik Filtersysteme GmbH "
+    },
+    "title": "Wolftechnik Filtersysteme GmbH  Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "wolftechnik-filtersysteme-gmbh-",
+      "wolftechnik-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/kanzleimichaelis",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=kanzlei-michaelis.de&customer_name=Peter Pachmann&customer_email=pachmann@kanzlei-michaelis.de&company name=Kanzlei Michaelis Rechtsanwälte",
+    "short_url": "https://demo.bifrotek.com/demo-kanzleimichaelis",
+    "short_code": "demo-kanzleimichaelis",
+    "customer_info": {
+      "domain": "kanzlei-michaelis.de",
+      "name": "Peter Pachmann",
+      "email": "pachmann@kanzlei-michaelis.de",
+      "company": "Kanzlei Michaelis Rechtsanwälte"
+    },
+    "title": "Kanzlei Michaelis Rechtsanwälte Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "kanzlei-michaelis-rechtsanwälte",
+      "kanzlei-michaelis-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/bg3000service",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=bg3000.de&customer_name=Verena Gemmel&customer_email=vg@bg3000.de&company name=BG3000 Service GmbH",
+    "short_url": "https://demo.bifrotek.com/demo-bg3000service",
+    "short_code": "demo-bg3000service",
+    "customer_info": {
+      "domain": "bg3000.de",
+      "name": "Verena Gemmel",
+      "email": "vg@bg3000.de",
+      "company": "BG3000 Service GmbH"
+    },
+    "title": "BG3000 Service GmbH Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "bg3000-service-gmbh",
+      "bg3000-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/germandeep",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=germandeeptech.group&customer_name=Oliver Viel&customer_email=oliver@germandeeptech.group&company name=German Deep Tech Group",
+    "short_url": "https://demo.bifrotek.com/demo-germandeep",
+    "short_code": "demo-germandeep",
+    "customer_info": {
+      "domain": "germandeeptech.group",
+      "name": "Oliver Viel",
+      "email": "oliver@germandeeptech.group",
+      "company": "German Deep Tech Group"
+    },
+    "title": "German Deep Tech Group Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "german-deep-tech-group",
+      "germandeeptech-group"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/orangequarter",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=orange-quarter.com&customer_name=Thomas Long&customer_email=tom@orange-quarter.com&company name=Orange Quarter",
+    "short_url": "https://demo.bifrotek.com/demo-orangequarter",
+    "short_code": "demo-orangequarter",
+    "customer_info": {
+      "domain": "orange-quarter.com",
+      "name": "Thomas Long",
+      "email": "tom@orange-quarter.com",
+      "company": "Orange Quarter"
+    },
+    "title": "Orange Quarter Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "orange-quarter",
+      "orange-quarter-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/eshopguide",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=eshop-guide.de&customer_name=Daniel Dintinger&customer_email=daniel@eshop-guide.de&company name=Eshop Guide - Die Shopify Plus Agentur",
+    "short_url": "https://demo.bifrotek.com/demo-eshopguide",
+    "short_code": "demo-eshopguide",
+    "customer_info": {
+      "domain": "eshop-guide.de",
+      "name": "Daniel Dintinger",
+      "email": "daniel@eshop-guide.de",
+      "company": "Eshop Guide - Die Shopify Plus Agentur"
+    },
+    "title": "Eshop Guide - Die Shopify Plus Agentur Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "eshop-guide---die-shopify-plus-agentur",
+      "eshop-guide-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/worldclass",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=worldclassbusinessleaders.com&customer_name=Josephin Reball&customer_email=josephin.reball@wcbleaders.com&company name=World Class Business Leaders",
+    "short_url": "https://demo.bifrotek.com/demo-worldclass",
+    "short_code": "demo-worldclass",
+    "customer_info": {
+      "domain": "worldclassbusinessleaders.com",
+      "name": "Josephin Reball",
+      "email": "josephin.reball@wcbleaders.com",
+      "company": "World Class Business Leaders"
+    },
+    "title": "World Class Business Leaders Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "world-class-business-leaders",
+      "worldclassbusinessleaders-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/scaleup",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=scaleup.de&customer_name=Katrin Wietek&customer_email=katrin.wietek@scaleup.de&company name=scale up",
+    "short_url": "https://demo.bifrotek.com/demo-scaleup",
+    "short_code": "demo-scaleup",
+    "customer_info": {
+      "domain": "scaleup.de",
+      "name": "Katrin Wietek",
+      "email": "katrin.wietek@scaleup.de",
+      "company": "scale up"
+    },
+    "title": "scale up Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "scale-up",
+      "scaleup-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/etsystem",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=et-system.de&customer_name=Roland Kosmowski&customer_email=kosmowski.roland@et-system.de&company name=ET System electronic GmbH",
+    "short_url": "https://demo.bifrotek.com/demo-etsystem",
+    "short_code": "demo-etsystem",
+    "customer_info": {
+      "domain": "et-system.de",
+      "name": "Roland Kosmowski",
+      "email": "kosmowski.roland@et-system.de",
+      "company": "ET System electronic GmbH"
+    },
+    "title": "ET System electronic GmbH Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "et-system-electronic-gmbh",
+      "et-system-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/krohnemarine",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=krohne-marine.com&customer_name=Ralf Dopieralla&customer_email=r.dopieralla@krohne.com&company name=KROHNE Marine",
+    "short_url": "https://demo.bifrotek.com/demo-krohnemarine",
+    "short_code": "demo-krohnemarine",
+    "customer_info": {
+      "domain": "krohne-marine.com",
+      "name": "Ralf Dopieralla",
+      "email": "r.dopieralla@krohne.com",
+      "company": "KROHNE Marine"
+    },
+    "title": "KROHNE Marine Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "krohne-marine",
+      "krohne-marine-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/lingosystems",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=lingosystems.de&customer_name=Steffen Garnich&customer_email=steffen.garnich@lingosystems.de&company name=lingo systems",
+    "short_url": "https://demo.bifrotek.com/demo-lingosystems",
+    "short_code": "demo-lingosystems",
+    "customer_info": {
+      "domain": "lingosystems.de",
+      "name": "Steffen Garnich",
+      "email": "steffen.garnich@lingosystems.de",
+      "company": "lingo systems"
+    },
+    "title": "lingo systems Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "lingo-systems",
+      "lingosystems-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/shigmbh",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=shi-gmbh.com&customer_name=Michael Anger&customer_email=michael.anger@shi-gmbh.com&company name=SHI GmbH",
+    "short_url": "https://demo.bifrotek.com/demo-shigmbh",
+    "short_code": "demo-shigmbh",
+    "customer_info": {
+      "domain": "shi-gmbh.com",
+      "name": "Michael Anger",
+      "email": "michael.anger@shi-gmbh.com",
+      "company": "SHI GmbH"
+    },
+    "title": "SHI GmbH Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "shi-gmbh",
+      "shi-gmbh-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/hysopt",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=hysopt.com&customer_name=Brian Wimberley&customer_email=brian@hysopt.com&company name=Hysopt",
+    "short_url": "https://demo.bifrotek.com/demo-hysopt",
+    "short_code": "demo-hysopt",
+    "customer_info": {
+      "domain": "hysopt.com",
+      "name": "Brian Wimberley",
+      "email": "brian@hysopt.com",
+      "company": "Hysopt"
+    },
+    "title": "Hysopt Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "hysopt",
+      "hysopt-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/undconsorten",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=undconsorten.de&customer_name=Florian Kobler &customer_email=florian.kobler@undconsorten.de&company name=undconsorten",
+    "short_url": "https://demo.bifrotek.com/demo-undconsorten",
+    "short_code": "demo-undconsorten",
+    "customer_info": {
+      "domain": "undconsorten.de",
+      "name": "Florian Kobler ",
+      "email": "florian.kobler@undconsorten.de",
+      "company": "undconsorten"
+    },
+    "title": "undconsorten Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "undconsorten",
+      "undconsorten-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/robincook",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=robin-cook.de&customer_name=Tyrone Smith&customer_email=smith@robin-cook.de&company name=Robin Cook",
+    "short_url": "https://demo.bifrotek.com/demo-robincook",
+    "short_code": "demo-robincook",
+    "customer_info": {
+      "domain": "robin-cook.de",
+      "name": "Tyrone Smith",
+      "email": "smith@robin-cook.de",
+      "company": "Robin Cook"
+    },
+    "title": "Robin Cook Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "robin-cook",
+      "robin-cook-de"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/germandronesgmbh",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=germandrones.com&customer_name=Sid Venkat&customer_email=s.venkat@germandrones.com&company name=Germandrones GmbH",
+    "short_url": "https://demo.bifrotek.com/demo-germandronesgmbh",
+    "short_code": "demo-germandronesgmbh",
+    "customer_info": {
+      "domain": "germandrones.com",
+      "name": "Sid Venkat",
+      "email": "s.venkat@germandrones.com",
+      "company": "Germandrones GmbH"
+    },
+    "title": "Germandrones GmbH Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "germandrones-gmbh",
+      "germandrones-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/dash0",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=dash0.com&customer_name=Marcel Sim&customer_email=marcel@dash0.com&company name=Dash0",
+    "short_url": "https://demo.bifrotek.com/demo-dash0",
+    "short_code": "demo-dash0",
+    "customer_info": {
+      "domain": "dash0.com",
+      "name": "Marcel Sim",
+      "email": "marcel@dash0.com",
+      "company": "Dash0"
+    },
+    "title": "Dash0 Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "dash0",
+      "dash0-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/sophrosynesemiconductor",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=sophrosynesemi.com&customer_name=Uttam Panda&customer_email=uttam.p@sophrosynetech.com&company name=Sophrosyne Semiconductor",
+    "short_url": "https://demo.bifrotek.com/demo-sophrosynesemiconductor",
+    "short_code": "demo-sophrosynesemiconductor",
+    "customer_info": {
+      "domain": "sophrosynesemi.com",
+      "name": "Uttam Panda",
+      "email": "uttam.p@sophrosynetech.com",
+      "company": "Sophrosyne Semiconductor"
+    },
+    "title": "Sophrosyne Semiconductor Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "sophrosyne-semiconductor",
+      "sophrosynesemi-com"
+    ]
+  },
+  {
+    "demo_url": "https://demo.bifrotek.com/unaicegmbh",
+    "custom_demo_url": "https://custom-demo.bifrotek.com/webapp?customer_domain=unaice.com&customer_name=Rosella Wenninger&customer_email=rosellawenninger@unaice.de&company name=uNaice GmbH",
+    "short_url": "https://demo.bifrotek.com/demo-unaicegmbh",
+    "short_code": "demo-unaicegmbh",
+    "customer_info": {
+      "domain": "unaice.com",
+      "name": "Rosella Wenninger",
+      "email": "rosellawenninger@unaice.de",
+      "company": "uNaice GmbH"
+    },
+    "title": "uNaice GmbH Demo",
+    "tags": [
+      "demo",
+      "campaign",
+      "unaice-gmbh",
+      "unaice-com"
+    ]
+  }
+]

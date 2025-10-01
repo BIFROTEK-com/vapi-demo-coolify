@@ -1,0 +1,117 @@
+version: '3.8'
+
+services:
+  # VAPI Demo Application
+  vapi-demo:
+    build: .
+    container_name: vapi-demo-app
+    ports:
+      - "8000:8000"
+    environment:
+      # Redis Configuration (external or internal)
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-vapi_redis_password}
+      
+      # Shlink Configuration (external or internal)
+      - SHLINK_API_KEY=${SHLINK_API_KEY:-}
+      - SHLINK_BASE_URL=${SHLINK_BASE_URL:-http://shlink:8080/rest/v3}
+      
+      # VAPI Configuration (set these in .env or Coolify)
+      - ASSISTANT_ID=${ASSISTANT_ID:-}
+      - PUBLIC_KEY=${PUBLIC_KEY:-}
+      - VAPI_PRIVATE_KEY=${VAPI_PRIVATE_KEY:-}
+      
+      # App Configuration
+      - CONFIG_PASSWORD=${CONFIG_PASSWORD:-mysecurepasswortTalocan12!}
+      - COMPANY_NAME=${COMPANY_NAME:-VAPI Demo}
+      - SUPPORT_EMAIL=${SUPPORT_EMAIL:-support@example.com}
+      
+      # Optional Features
+      - FACEBOOK_BUSINESS_WHATSAPP=${FACEBOOK_BUSINESS_WHATSAPP:-}
+      - CALENDLY_LINK=${CALENDLY_LINK:-}
+      
+    volumes:
+      - ./.env:/app/.env:ro  # Mount .env file if it exists
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Redis for session management (optional - can use external)
+  redis:
+    image: redis:7-alpine
+    container_name: vapi-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-vapi_redis_password}
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-vapi_redis_password}", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  # Shlink URL Shortener (optional - can use external)
+  shlink:
+    image: shlinkio/shlink:4.0.0
+    container_name: vapi-shlink
+    ports:
+      - "8080:8080"
+    environment:
+      - DEFAULT_DOMAIN=${SHLINK_DOMAIN:-localhost:8080}
+      - IS_HTTPS_ENABLED=${SHLINK_HTTPS:-false}
+      - GEOLITE_LICENSE_KEY=${GEOLITE_LICENSE_KEY:-}
+      - DB_DRIVER=pdo_pgsql
+      - DB_NAME=shlink
+      - DB_USER=shlink
+      - DB_PASSWORD=shlink
+      - DB_HOST=shlink-db
+      - REDIS_SERVERS=redis://redis:6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-vapi_redis_password}
+    depends_on:
+      shlink-db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - shlink_data:/etc/shlink
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Shlink Database (PostgreSQL)
+  shlink-db:
+    image: postgres:15-alpine
+    container_name: vapi-shlink-db
+    environment:
+      - POSTGRES_DB=shlink
+      - POSTGRES_USER=shlink
+      - POSTGRES_PASSWORD=shlink
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - shlink_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shlink -d shlink"]
+      interval: 30s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local
+  shlink_data:
+    driver: local
+  shlink_db_data:
+    driver: local
