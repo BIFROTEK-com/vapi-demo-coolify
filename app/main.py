@@ -1160,56 +1160,16 @@ def landing_page(
 # SaaS Admin Routes
 @app.get("/config", response_class=HTMLResponse)
 def config_page(request: Request) -> HTMLResponse:
-    """Password-protected configuration page - shows login form."""
-    import os
+    """Modern configuration page with authentication and SaaS management."""
+    # Load current SaaS configuration for template context
+    saas_config = get_saas_config()
     
-    # Get password from environment
-    config_password = os.getenv("CONFIG_PASSWORD", "")
-    if not config_password:
-        return HTMLResponse(
-            content="""
-            <html>
-                <head><title>Config Error</title></head>
-                <body style="font-family: Arial, sans-serif; padding: 40px; text-align: center;">
-                    <h1>❌ Configuration Error</h1>
-                    <p>CONFIG_PASSWORD not set in environment variables.</p>
-                    <a href="/webapp" style="color: blue;">← Back to WebApp</a>
-                </body>
-            </html>
-            """,
-            status_code=500
-        )
-    
-    # Show password form (no password check in GET)
-    return HTMLResponse(
-        content=f"""
-        <html>
-            <head>
-                <title>Config Access</title>
-                <style>
-                    body {{ font-family: Arial, sans-serif; padding: 40px; text-align: center; background: #f5f5f5; }}
-                    .container {{ max-width: 400px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }}
-                    input {{ width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }}
-                    button {{ width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }}
-                    button:hover {{ background: #0056b3; }}
-                    .error {{ color: red; margin-top: 10px; }}
-                </style>
-            </head>
-            <body>
-                <div class="container">
-                    <h1>🔐 Config Access</h1>
-                    <p>Enter password to access configuration:</p>
-                    <form method="post" action="/config">
-                        <input type="password" name="password" placeholder="Enter password" required>
-                        <button type="submit">Access Config</button>
-                    </form>
-                    <a href="/webapp" style="color: #666; text-decoration: none;">← Back to WebApp</a>
-                </div>
-            </body>
-        </html>
-        """,
-        status_code=200
-    )
+    return templates.TemplateResponse("config.html", {
+        "request": request,
+        "primary_color": saas_config.primary_color or "#4361ee",
+        "secondary_color": saas_config.secondary_color or "#3a0ca3", 
+        "accent_color": saas_config.accent_color or "#4cc9f0",
+    })
 
 @app.post("/config", response_class=HTMLResponse)
 def config_page_post(password: str = Form(...)) -> HTMLResponse:
