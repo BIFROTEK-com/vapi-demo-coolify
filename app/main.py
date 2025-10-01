@@ -1602,7 +1602,7 @@ def get_config_status() -> dict:
     vapi_configured = bool(config.get("assistantId") and config.get("publicKey"))
     
     # Check if we have basic company info
-    company_configured = bool(config.get("companyName"))
+    company_configured = bool(config.get("companyName") or config.get("saas_company_name"))
     
     # Check if we have contact info
     contact_configured = bool(config.get("facebookBusinessWhatsApp") or config.get("calendlyLink"))
@@ -1615,7 +1615,7 @@ def get_config_status() -> dict:
         missing_items.append("VAPI Assistant ID")
     if not config.get("publicKey"):
         missing_items.append("VAPI Public Key")
-    if not config.get("companyName"):
+    if not config.get("companyName") and not config.get("saas_company_name"):
         missing_items.append("Company Name")
     if not contact_configured:
         missing_items.append("Contact Information (WhatsApp or Calendly)")
