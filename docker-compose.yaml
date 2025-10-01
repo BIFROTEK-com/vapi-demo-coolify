@@ -31,7 +31,7 @@ services:
       - CALENDLY_LINK=${CALENDLY_LINK}
       
     volumes:
-      - ./.env:/app/.env:ro  # Mount .env file if it exists
+      - ./.env:/app/.env:ro  # Mount .env file if it exists (local development only)
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
