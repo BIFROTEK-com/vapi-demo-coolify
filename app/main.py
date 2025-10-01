@@ -1424,7 +1424,13 @@ def get_env_config_internal() -> dict:
         calendly_link = settings.calendly_link
         analyzed_domain = settings.analyzed_domain
         company_name = settings.company_name
-
+        website_url = settings.website_url
+        support_email = settings.support_email
+        impressum_url = settings.impressum_url
+        privacy_policy_url = settings.privacy_policy_url
+        terms_url = settings.terms_url
+        hero_title = settings.hero_title
+        hero_text = settings.hero_text
         primary_color = settings.primary_color
         secondary_color = settings.secondary_color
         accent_color = settings.accent_color

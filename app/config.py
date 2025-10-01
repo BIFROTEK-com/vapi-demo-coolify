@@ -62,6 +62,30 @@ class AppSettings(BaseSettings):
         default="",
         description="Support Email - OPTIONAL: Set via SUPPORT_EMAIL env var"
     )
+    website_url: str = Field(
+        default="",
+        description="Website URL - OPTIONAL: Set via WEBSITE_URL env var"
+    )
+    impressum_url: str = Field(
+        default="",
+        description="Impressum URL - OPTIONAL: Set via IMPRESSUM_URL env var"
+    )
+    privacy_policy_url: str = Field(
+        default="",
+        description="Privacy Policy URL - OPTIONAL: Set via PRIVACY_POLICY_URL env var"
+    )
+    terms_url: str = Field(
+        default="",
+        description="Terms URL - OPTIONAL: Set via TERMS_URL env var"
+    )
+    hero_title: str = Field(
+        default="",
+        description="Hero Title - OPTIONAL: Set via HERO_TITLE env var"
+    )
+    hero_text: str = Field(
+        default="",
+        description="Hero Text - OPTIONAL: Set via HERO_TEXT env var"
+    )
     
     # Redis Configuration
     redis_url: str = Field(
