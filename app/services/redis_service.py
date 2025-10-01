@@ -46,7 +46,7 @@ class RedisService:
         self._connection_attempted = True
         
         try:
-            # Try Upstash Redis URL first
+            # Try Redis URL first (works for both local and Upstash)
             if self.settings.redis_url:
                 self.redis_client = redis.from_url(
                     self.settings.redis_url,
@@ -56,10 +56,24 @@ class RedisService:
                 )
                 # Test connection
                 await self.redis_client.ping()
-                print(f"✅ Connected to Upstash Redis at {self.settings.redis_url}")
+                print(f"✅ Connected to Redis at {self.settings.redis_url}")
                 return True
                 
-            # Fallback to username/password if URL not provided
+            # Fallback to local Docker Redis if URL not provided
+            elif self.settings.redis_password:
+                self.redis_client = redis.Redis(
+                    host='redis',  # Docker service name
+                    port=6379,
+                    password=self.settings.redis_password,
+                    decode_responses=True,
+                    socket_connect_timeout=5,
+                    socket_timeout=5
+                )
+                await self.redis_client.ping()
+                print(f"✅ Connected to local Docker Redis")
+                return True
+                
+            # Fallback to username/password for Upstash
             elif self.settings.redis_username and self.settings.redis_password:
                 self.redis_client = redis.Redis(
                     host='redis-12345.upstash.io',  # Default Upstash host

@@ -54,12 +54,11 @@ Setzen Sie in Ihrer `.env`-Datei:
 
 ## 📊 Services
 
-Die Anwendung besteht aus 4 Services:
+Die Anwendung besteht aus 2 Services:
 
 1. **vapi-demo** - Hauptanwendung (Port 8000)
 2. **redis** - Session-Management
-3. **shlink** - URL-Shortening (Port 8080)
-4. **shlink-db** - PostgreSQL-Datenbank
+3. **shlink** - Externer URL-Shortening-Service (siehe [SHLINK_EXTERNAL_SETUP.md](SHLINK_EXTERNAL_SETUP.md))
 
 ## 🔍 Health Checks
 
@@ -70,7 +69,7 @@ Die Anwendung besteht aus 4 Services:
 
 - [Coolify Deployment Guide](COOLIFY_DEPLOYMENT.md)
 - [Redis Integration](REDIS_INTEGRATION.md)
-- [Shlink Setup](shlink/SHLINK_SETUP.md)
+- [Externer Shlink Setup](SHLINK_EXTERNAL_SETUP.md)
 
 ## 🛠️ Support
 
