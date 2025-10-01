@@ -17,30 +17,64 @@ Die Redis-Integration ermöglicht:
 Fügen Sie folgende Variablen zu Ihrer `.env` Datei hinzu:
 
 ```bash
-# Upstash Redis URL (empfohlen für Production)
-REDIS_URL=redis://default:your-redis-password@redis-12345.upstash.io:6379
+# Redis Configuration
+REDIS_URL=redis://redis:6379
+REDIS_PASSWORD=your-redis-password-here
 
-# Alternative: Redis Credentials (falls URL nicht verwendet wird)
-REDIS_USERNAME=default
-REDIS_PASSWORD=your-redis-password
+# Für externe Redis-Instanzen (z.B. Upstash)
+# REDIS_URL=redis://default:your-redis-password@redis-12345.upstash.io:6379
 ```
 
-### Upstash Redis Setup
+### Deployment-Optionen
 
-1. **Datenbank erstellen**:
-   - Gehen Sie zu [Upstash Console](https://console.upstash.com)
-   - Erstellen Sie eine neue Redis-Datenbank
-   - Wählen Sie die nächstgelegene Region (z.B. Frankfurt, Germany)
+#### 1. Lokale Entwicklung (Docker Compose)
 
-2. **Credentials abrufen**:
-   - Kopieren Sie die Redis URL aus der Upstash Console
-   - Oder notieren Sie sich Username und Password separat
+Redis wird automatisch als Container bereitgestellt:
 
-3. **Konfiguration testen**:
-   ```bash
-   # Health Check mit Redis-Status
-   curl http://localhost:8000/health
-   ```
+```yaml
+# docker-compose.yml
+redis:
+  image: redis:7-alpine
+  container_name: vapi-redis
+  ports:
+    - "6379:6379"
+  command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+```
+
+**Setup:**
+1. Kopieren Sie `env.example` zu `.env`
+2. Setzen Sie `REDIS_PASSWORD` in der `.env`
+3. Starten Sie mit `docker-compose up`
+
+#### 2. Coolify Docker Deployment
+
+Redis wird intern von Coolify bereitgestellt:
+
+```yaml
+# coolify.yml
+redis:
+  image: redis:7-alpine
+  container_name: vapi-redis
+  command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+```
+
+**Setup:**
+1. Setzen Sie `REDIS_PASSWORD` in Coolify Environment Variables
+2. Deployen Sie die Anwendung
+
+#### 3. Externe Redis-Instanz (Produktion)
+
+Für Produktionsumgebungen können externe Redis-Instanzen verwendet werden:
+
+- **Upstash Redis**: Cloud-basierte Redis-Instanz
+- **AWS ElastiCache**: Managed Redis-Service
+- **Eigene Redis-Instanz**: Self-hosted Redis-Server
+
+**Konfiguration testen:**
+```bash
+# Health Check mit Redis-Status
+curl http://localhost:8000/health
+```
 
 ## Architektur
 
@@ -199,8 +233,11 @@ pytest tests/ -v
 # Health Check
 curl http://localhost:8000/health | jq '.redis'
 
-# Upstash Console
-# Gehen Sie zu https://console.upstash.com für detaillierte Metriken
+# Docker Container Status
+docker ps | grep redis
+
+# Redis Container Logs
+docker logs vapi-redis
 ```
 
 ### Logs überwachen
@@ -214,6 +251,9 @@ grep "session" logs/app.log
 
 # Message-Broadcasting
 grep "webhook" logs/app.log
+
+# Docker Redis Logs
+docker logs vapi-redis --follow
 ```
 
 ## Troubleshooting
@@ -221,17 +261,19 @@ grep "webhook" logs/app.log
 ### Häufige Probleme
 
 1. **Redis-Verbindung fehlgeschlagen**:
-   - Überprüfen Sie die `REDIS_URL` in der `.env`
-   - Stellen Sie sicher, dass Upstash Redis läuft
-   - Prüfen Sie Firewall-Einstellungen
+   - Überprüfen Sie die `REDIS_URL` und `REDIS_PASSWORD` in der `.env`
+   - Stellen Sie sicher, dass Redis-Container läuft: `docker ps | grep redis`
+   - Prüfen Sie Container-Logs: `docker logs vapi-redis`
 
 2. **Sessions werden nicht gespeichert**:
-   - Überprüfen Sie Redis-Logs in der Upstash Console
+   - Überprüfen Sie Redis-Container-Status
    - Testen Sie mit `/health` Endpoint
+   - Prüfen Sie Redis-Logs: `docker logs vapi-redis`
 
 3. **Messages kommen nicht an**:
    - Überprüfen Sie Session-Registration
    - Testen Sie Webhook-Endpoints
+   - Prüfen Sie Redis-Verbindung
 
 ### Debug-Modus
 
@@ -271,8 +313,17 @@ print(asyncio.run(redis_service.connect()))
 - **TTL**: Sessions haben automatische Ablaufzeit
 - **Validation**: Alle Daten werden validiert vor Speicherung
 
-### Upstash Security
+### Docker Security
 
-- **VPC**: Private Netzwerk-Isolation möglich
-- **Encryption**: Daten werden verschlüsselt übertragen und gespeichert
-- **Access Control**: IP-Whitelisting verfügbar
+- **Container Isolation**: Redis läuft in isoliertem Container
+- **Password Protection**: Redis ist mit Passwort geschützt
+- **Network Security**: Container-zu-Container Kommunikation
+- **Volume Persistence**: Daten werden in Docker-Volumes gespeichert
+
+### Externe Redis-Instanzen (Produktion)
+
+Für Produktionsumgebungen mit externen Redis-Instanzen:
+
+- **Upstash Redis**: Cloud-basierte Redis-Instanz mit VPC-Isolation
+- **AWS ElastiCache**: Managed Redis-Service mit Security Groups
+- **Eigene Redis-Instanz**: Self-hosted mit Firewall-Konfiguration

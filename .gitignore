@@ -1,3 +1,11 @@
+# Environment files
+.env
+.env.local
+.env.production
+.env.backup
+.env.*
+!.env.example
+
 # Python
 __pycache__/
 *.py[cod]
@@ -21,58 +29,54 @@ wheels/
 *.egg
 MANIFEST
 
-# Virtual Environment
-.venv/
+# Virtual environments
 venv/
-ENV/
 env/
+ENV/
+env.bak/
+venv.bak/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Environment variables
-.env
-.env.local
-.env.production
-copy.env
+# Docker
+.dockerignore
 
-# Python cache files
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
+# Logs
+*.log
+logs/
 
-# Virtual environments
-.venv/
-venv/
-env/
-ENV/
+# Database
+*.db
+*.sqlite3
 
-# Playwright MCP
+# Temporary files
+tmp/
+temp/
+
+# Coolify specific
+coolify.env
+
+# Playwright screenshots and test files
 .playwright-mcp/
-playwright-mcp/
 *.png
 *.jpg
 *.jpeg
 *.gif
-*.webp
+*.csv
 
-# Logs
-*.log
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Temporary files
-*.tmp
-*.tempnode_modules/
-.env copy
+# Virtual environment
+.venv/

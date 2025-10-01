@@ -1,37 +1,59 @@
-# 🚀 VAPI Demo Builder - Coolify Deployment Guide
+# 🚀 VAPI Demo Builder - Deployment Guide
 
 ## Übersicht
 
-Diese Anleitung zeigt Ihnen, wie Sie den VAPI Demo Builder einfach und schnell bei Coolify deployen können.
+Diese Anleitung zeigt Ihnen, wie Sie den VAPI Demo Builder bei Coolify deployen können.
 
 ## 📋 Voraussetzungen
 
 - Coolify-Instanz (selbst gehostet oder Cloud)
 - VAPI-Account mit API-Keys
 - Domain für Ihre Anwendung
+- Git-Repository (GitHub/GitLab)
 
 ## 🎯 Schnellstart (5 Minuten)
 
-### Schritt 1: Repository klonen
+### Schritt 1: Repository vorbereiten
+
+1. **Forken Sie dieses Repository** oder klonen Sie es
+2. **Erstellen Sie eine neue Branch** für Ihr Projekt
+3. **Kopieren Sie `.env.example` zu `.env`** und füllen Sie Ihre Werte ein
+
 ```bash
 git clone https://github.com/ihr-username/vapi-demo-coolify.git
 cd vapi-demo-coolify
+cp .env.example .env
+# Bearbeiten Sie .env mit Ihren Werten
 ```
 
 ### Schritt 2: Environment-Variablen konfigurieren
-Kopieren Sie `.env.example` zu `.env` und füllen Sie Ihre Werte ein:
+
+**Wichtige Variablen in `.env`:**
 
 ```bash
-cp .env.example .env
-```
+# VAPI Configuration (REQUIRED)
+ASSISTANT_ID=your-vapi-assistant-id-here
+PUBLIC_KEY=your-vapi-public-key-here
+VAPI_PRIVATE_KEY=your-vapi-private-key-here
 
-**Wichtige Variablen:**
-- `ASSISTANT_ID` - Ihr VAPI Assistant ID
-- `PUBLIC_KEY` - Ihr VAPI Public Key  
-- `VAPI_PRIVATE_KEY` - Ihr VAPI Private Key
-- `COMPANY_NAME` - Ihr Firmenname
-- `WEBSITE_URL` - Ihre Domain
-- `REDIS_PASSWORD` - Starkes Passwort für Redis
+# App Configuration (REQUIRED)
+CONFIG_PASSWORD=your-secure-password-here
+COMPANY_NAME=Your Company Name
+SUPPORT_EMAIL=your-email@example.com
+
+# Website & Branding (REQUIRED)
+WEBSITE_URL=https://your-domain.com
+IMPRESSUM_URL=https://your-domain.com/impressum
+PRIVACY_POLICY_URL=https://your-domain.com/datenschutz
+TERMS_URL=https://your-domain.com/terms
+
+# Redis Configuration (REQUIRED)
+REDIS_PASSWORD=your-redis-password-here
+
+# Shlink Configuration (REQUIRED)
+SHLINK_DOMAIN=your-domain.com
+SHLINK_HTTPS=true
+```
 
 ### Schritt 3: Bei Coolify deployen
 

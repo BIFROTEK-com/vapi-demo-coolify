@@ -14,9 +14,9 @@ async function loadVapiCredentials() {
         initializeVapiWidget();
     } catch (error) {
         console.error('❌ Failed to load VAPI credentials:', error);
-        // Fallback to default values for development
-        assistant = "4eea01cc-58fc-4ed7-b5bf-6b2e94952e8f";
-        apiKey = "b6ee00e6-ad19-4a0b-8058-ffbe54069dc4";
+        // Fallback to placeholder values for development
+        assistant = "your-assistant-id-here";
+        apiKey = "your-public-key-here";
         initializeVapiWidget();
     }
 }
