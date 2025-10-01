@@ -135,29 +135,88 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative py-16 overflow-hidden">
+    <!-- Authentication Section -->
+    <div id="authSection" class="relative py-16 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-accent/10 dark:from-primary-900/20 dark:to-accent/20"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="animate-fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                    Konfiguriere deine
-                    <span class="bg-gradient-to-r from-primary-600 to-accent bg-clip-text text-transparent">
-                        VAPI Demo
-                    </span>
-                </h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                    Passe deine Voice AI-Anwendung individuell an. Ändere Farben, Logo, Nachrichten und mehr 
-                    mit unserer benutzerfreundlichen Konfigurationsoberfläche.
-                </p>
+        <div class="relative max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-effect rounded-2xl p-8 shadow-xl">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary-600 to-accent rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                        Admin-Zugang
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Bitte geben Sie das Admin-Passwort ein
+                    </p>
+                </div>
+                
+                <form id="authForm" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Passwort
+                        </label>
+                        <input type="password" 
+                               id="adminPassword"
+                               placeholder="Admin-Passwort eingeben"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+                    
+                    <button type="submit" 
+                            class="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        Anmelden
+                    </button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Main Configuration Section -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        
-        <!-- Configuration Grid -->
+    <!-- Main Configuration Section (Hidden by default) -->
+    <div id="mainConfigSection" class="hidden">
+        <!-- Hero Section -->
+        <section class="relative py-16 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-accent/10 dark:from-primary-900/20 dark:to-accent/20"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="animate-fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                        Konfiguriere deine
+                        <span class="bg-gradient-to-r from-primary-600 to-accent bg-clip-text text-transparent">
+                            VAPI Demo
+                        </span>
+                    </h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Passe deine Voice AI-Anwendung individuell an. Ändere Farben, Logo, Nachrichten und mehr 
+                        mit unserer benutzerfreundlichen Konfigurationsoberfläche.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Environment Status Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+            <div class="glass-effect rounded-2xl p-8 shadow-xl">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Environment-Status</h3>
+                </div>
+                
+                <div id="envStatus" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Status items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Configuration Section -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            
+            <!-- Configuration Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             
             <!-- Brand Configuration -->
@@ -278,48 +337,86 @@
             </div>
         </div>
 
-        <!-- VAPI Configuration -->
+        <!-- SaaS Configuration -->
         <div class="glass-effect rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 animate-slide-up mb-12" style="animation-delay: 0.2s;">
             <div class="flex items-center mb-6">
-                <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mr-4">
+                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">VAPI Einstellungen</h3>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">SaaS-Konfiguration</h3>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- API Key -->
-                <div class="space-y-3">
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        VAPI API Key
-                    </label>
-                    <div class="relative">
-                        <input type="password" 
-                               id="vapiApiKey"
-                               placeholder="sk-..."
-                               class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
-                        <button type="button" 
-                                id="toggleApiKey"
-                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                            </svg>
-                        </button>
+                <!-- Company Information -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-600 pb-2">Firmeninformationen</h4>
+                    
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Firmenname
+                        </label>
+                        <input type="text" 
+                               id="saasCompanyName"
+                               placeholder="Ihr Firmenname"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Website URL
+                        </label>
+                        <input type="url" 
+                               id="saasWebsiteUrl"
+                               placeholder="https://ihre-website.com"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Support E-Mail
+                        </label>
+                        <input type="email" 
+                               id="saasSupportEmail"
+                               placeholder="support@ihre-firma.com"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
                     </div>
                 </div>
 
-                <!-- Assistant ID -->
-                <div class="space-y-3">
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        Assistant ID
-                    </label>
-                    <input type="text" 
-                           id="assistantId"
-                           placeholder="asst_..."
-                           class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                <!-- Legal Links -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-600 pb-2">Rechtliche Links</h4>
+                    
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Impressum URL
+                        </label>
+                        <input type="url" 
+                               id="saasImpressumUrl"
+                               placeholder="https://ihre-website.com/impressum"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Datenschutz URL
+                        </label>
+                        <input type="url" 
+                               id="saasPrivacyUrl"
+                               placeholder="https://ihre-website.com/datenschutz"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            AGB URL
+                        </label>
+                        <input type="url" 
+                               id="saasTermsUrl"
+                               placeholder="https://ihre-website.com/agb"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
                 </div>
             </div>
         </div>
@@ -348,7 +445,8 @@
                 </span>
             </button>
         </div>
-    </main>
+        </main>
+    </div>
 
     <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-4 right-4 z-50 transform translate-y-full opacity-0 transition-all duration-300">
@@ -483,28 +581,150 @@
             }, 4000);
         }
 
+        // Authentication
+        let isAuthenticated = false;
+        let authToken = '';
+
+        document.getElementById('authForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            
+            try {
+                const response = await fetch('/api/admin/config', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa('admin:' + password)
+                    }
+                });
+                
+                if (response.ok) {
+                    isAuthenticated = true;
+                    authToken = btoa('admin:' + password);
+                    document.getElementById('authSection').classList.add('hidden');
+                    document.getElementById('mainConfigSection').classList.remove('hidden');
+                    loadEnvironmentStatus();
+                    loadSaaSConfig();
+                    showToast('Erfolgreich angemeldet!', 'Willkommen im Admin-Bereich.', 'success');
+                } else {
+                    showToast('Anmeldung fehlgeschlagen', 'Ungültiges Passwort.', 'error');
+                }
+            } catch (error) {
+                showToast('Anmeldung fehlgeschlagen', 'Verbindungsfehler.', 'error');
+            }
+        });
+
+        // Load Environment Status
+        async function loadEnvironmentStatus() {
+            try {
+                const response = await fetch('/api/admin/config');
+                const data = await response.json();
+                
+                const envStatus = document.getElementById('envStatus');
+                const envVars = [
+                    { key: 'ASSISTANT_ID', label: 'VAPI Assistant ID', value: data.infrastructure.assistantId, required: true },
+                    { key: 'PUBLIC_KEY', label: 'VAPI Public Key', value: data.infrastructure.publicKey, required: true },
+                    { key: 'VAPI_PRIVATE_KEY', label: 'VAPI Private Key', value: data.infrastructure.privateKey, required: false },
+                    { key: 'CALENDLY_LINK', label: 'Calendly Link', value: data.infrastructure.calendlyLink, required: false },
+                    { key: 'FACEBOOK_BUSINESS_WHATSAPP', label: 'WhatsApp Business', value: data.infrastructure.facebookBusinessWhatsApp, required: false },
+                    { key: 'CONFIG_PASSWORD', label: 'Admin Password', value: data.infrastructure.configPassword ? '***' : '', required: true }
+                ];
+
+                envStatus.innerHTML = envVars.map(env => {
+                    const isSet = env.value && env.value.trim() !== '';
+                    const statusClass = isSet ? 'bg-green-100 dark:bg-green-900' : (env.required ? 'bg-red-100 dark:bg-red-900' : 'bg-yellow-100 dark:bg-yellow-900');
+                    const statusIcon = isSet ? '✓' : (env.required ? '✗' : '?');
+                    const statusText = isSet ? 'Konfiguriert' : (env.required ? 'Fehlt' : 'Optional');
+                    
+                    return `
+                        <div class="p-4 rounded-xl ${statusClass}">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-semibold text-sm">${env.label}</span>
+                                <span class="text-lg">${statusIcon}</span>
+                            </div>
+                            <div class="text-xs text-gray-600 dark:text-gray-400">
+                                ${env.key}
+                            </div>
+                            <div class="text-xs font-medium mt-1">
+                                ${statusText}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading environment status:', error);
+            }
+        }
+
+        // Load SaaS Configuration
+        async function loadSaaSConfig() {
+            try {
+                const response = await fetch('/api/saas-config');
+                const data = await response.json();
+                
+                // Populate SaaS form fields
+                document.getElementById('saasCompanyName').value = data.companyName || '';
+                document.getElementById('saasWebsiteUrl').value = data.websiteUrl || '';
+                document.getElementById('saasSupportEmail').value = data.supportEmail || '';
+                document.getElementById('saasImpressumUrl').value = data.impressumUrl || '';
+                document.getElementById('saasPrivacyUrl').value = data.privacyPolicyUrl || '';
+                document.getElementById('saasTermsUrl').value = data.termsUrl || '';
+                document.getElementById('logoUrl').value = data.logoUrl || '';
+                document.getElementById('primaryColor').value = data.primaryColor || '#4361ee';
+                document.getElementById('primaryColorText').value = data.primaryColor || '#4361ee';
+                document.getElementById('secondaryColor').value = data.secondaryColor || '#3a0ca3';
+                document.getElementById('secondaryColorText').value = data.secondaryColor || '#3a0ca3';
+                document.getElementById('companyName').value = data.companyName || '';
+                document.getElementById('welcomeMessage').value = data.heroText || '';
+            } catch (error) {
+                console.error('Error loading SaaS config:', error);
+            }
+        }
+
         // Save Configuration
         document.getElementById('saveConfig').addEventListener('click', async () => {
+            if (!isAuthenticated) {
+                showToast('Nicht angemeldet', 'Bitte melden Sie sich zuerst an.', 'error');
+                return;
+            }
+
             const loadingOverlay = document.getElementById('loadingOverlay');
             loadingOverlay.classList.remove('hidden');
             loadingOverlay.classList.add('flex');
 
             try {
-                const config = {
-                    logoUrl: document.getElementById('logoUrl').value,
-                    primaryColor: document.getElementById('primaryColor').value,
-                    secondaryColor: document.getElementById('secondaryColor').value,
-                    companyName: document.getElementById('companyName').value,
-                    welcomeMessage: document.getElementById('welcomeMessage').value,
-                    ctaText: document.getElementById('ctaText').value,
-                    vapiApiKey: document.getElementById('vapiApiKey').value,
-                    assistantId: document.getElementById('assistantId').value
+                // Save SaaS configuration
+                const saasConfig = {
+                    company_name: document.getElementById('saasCompanyName').value,
+                    website_url: document.getElementById('saasWebsiteUrl').value,
+                    support_email: document.getElementById('saasSupportEmail').value,
+                    impressum_url: document.getElementById('saasImpressumUrl').value,
+                    privacy_policy_url: document.getElementById('saasPrivacyUrl').value,
+                    terms_url: document.getElementById('saasTermsUrl').value,
+                    logo_url: document.getElementById('logoUrl').value,
+                    primary_color: document.getElementById('primaryColor').value,
+                    secondary_color: document.getElementById('secondaryColor').value,
+                    accent_color: document.getElementById('secondaryColor').value, // Using secondary as accent for now
+                    hero_title: document.getElementById('companyName').value,
+                    hero_text: document.getElementById('welcomeMessage').value,
+                    powered_by_text: 'Powered by BIFROTEK',
+                    powered_by_url: 'https://bifrotek.com'
                 };
 
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                const response = await fetch('/api/saas-config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(saasConfig)
+                });
 
-                showToast('Erfolgreich gespeichert!', 'Ihre Konfiguration wurde erfolgreich aktualisiert.', 'success');
+                const result = await response.json();
+
+                if (result.success) {
+                    showToast('Erfolgreich gespeichert!', 'Ihre SaaS-Konfiguration wurde erfolgreich aktualisiert.', 'success');
+                } else {
+                    showToast('Fehler beim Speichern', result.message || 'Unbekannter Fehler.', 'error');
+                }
             } catch (error) {
                 showToast('Fehler beim Speichern', 'Es gab ein Problem beim Speichern der Konfiguration.', 'error');
             } finally {

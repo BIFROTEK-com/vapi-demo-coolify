@@ -14,7 +14,7 @@ from typing import Optional
 # Load environment variables from .env file
 load_dotenv()
 
-from .config import get_settings
+from .config import get_settings, get_saas_config, save_saas_config, SaaSConfig
 from .services.color_extractor import extract_brand_colors
 from .services.redis_service import redis_service
 from .services.shlink_service import shlink_service, ShortUrlRequest, ShortUrlResponse
@@ -1007,14 +1007,17 @@ def public_webapp(
     public_key = settings.public_key
     calendly_link = settings.calendly_link
     
-    # Load SAAS-Agentur config values from environment
-    saas_company_name = settings.company_name
-    saas_logo_url = settings.logo_url
-    saas_website_url = settings.website_url
-    support_email = settings.support_email
-    impressum_url = settings.impressum_url
-    privacy_url = settings.privacy_policy_url
-    terms_url = settings.terms_url
+    # Load SAAS-Agentur config values from SaaS configuration
+    from app.config import get_saas_config
+    saas_config = get_saas_config()
+    
+    saas_company_name = saas_config.company_name
+    saas_logo_url = saas_config.logo_url
+    saas_website_url = saas_config.website_url
+    support_email = saas_config.support_email
+    impressum_url = saas_config.impressum_url
+    privacy_url = saas_config.privacy_policy_url
+    terms_url = saas_config.terms_url
     
     # Extract company name from domain for personalization
     if customer_domain:
@@ -1027,13 +1030,13 @@ def public_webapp(
         if not company_name:  # Default company name when no domain and no company_name
             company_name = "VAPI"
     
-    # Load brand colors from environment variables (SaaS agency config)
-    primary_color = settings.primary_color or "#4361ee"    # Default blue
-    secondary_color = settings.secondary_color or "#3a0ca3"  # Default dark blue  
-    accent_color = settings.accent_color or "#4cc9f0"     # Default light blue
+    # Load brand colors from SaaS configuration
+    primary_color = saas_config.primary_color or "#4361ee"    # Default blue
+    secondary_color = saas_config.secondary_color or "#3a0ca3"  # Default dark blue  
+    accent_color = saas_config.accent_color or "#4cc9f0"     # Default light blue
     
-    # If no colors set in environment, try to extract from customer domain
-    if customer_domain and clean_domain and not settings.primary_color:
+    # If no colors set in SaaS config, try to extract from customer domain
+    if customer_domain and clean_domain and not saas_config.primary_color:
         try:
             # Extract brand colors using the color extractor service
             extracted_primary, extracted_secondary, extracted_accent = extract_brand_colors(clean_domain)
@@ -1061,12 +1064,12 @@ def public_webapp(
     demo_agent_title = f"{company_name} KI-Assistent"
     
     # Create personalized messages - use SaaS agency config if available
-    if settings.hero_title and settings.hero_text:
+    if saas_config.hero_title and saas_config.hero_text:
         # Use SaaS agency configured hero content
-        hero_title = settings.hero_title
-        hero_subtitle = settings.hero_text
-        welcome_message = f"Willkommen! {settings.hero_text}"
-        first_message = f"Hallo! Ich bin Ihr KI-Assistent. {settings.hero_text}"
+        hero_title = saas_config.hero_title
+        hero_subtitle = saas_config.hero_text
+        welcome_message = f"Willkommen! {saas_config.hero_text}"
+        first_message = f"Hallo! Ich bin Ihr KI-Assistent. {saas_config.hero_text}"
     elif customer_name and company_name:
         welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
         first_message = f"Hallo {customer_name}! Ich bin der KI-Assistent von {company_name} und helfe Ihnen gerne bei allen Fragen. Wie kann ich Ihnen behilflich sein?"
@@ -1385,147 +1388,76 @@ def get_secure_config(password: str = Form(...)) -> dict:
     return get_env_config_internal()
 
 def get_env_config_internal() -> dict:
-    """Internal function to get configuration values from .env file."""
-    assistant_id = ""
-    public_key = ""
-    private_key = ""
-    
-    try:
-        settings = get_settings()
-        assistant_id = settings.assistant_id
-        public_key = settings.public_key
-        private_key = settings.vapi_private_key
-    except Exception:
-        # If settings can't be loaded, try to read from .env file directly
-        import os
-        from pathlib import Path
-        
-        env_file = Path(".env")
-        if env_file.exists():
-            with open(env_file, 'r') as f:
-                for line in f:
-                    line = line.strip()
-                    if line.startswith('ASSISTANT_ID='):
-                        assistant_id = line.split('=', 1)[1]
-                    elif line.startswith('PUBLIC_KEY='):
-                        public_key = line.split('=', 1)[1]
-                    elif line.startswith('VAPI_PRIVATE_KEY='):
-                        private_key = line.split('=', 1)[1]
-    
-    # Also load manual inputs and domain analysis
-    facebook_business_whatsapp = ""
-    calendly_link = ""
-    analyzed_domain = ""
-    company_name = ""
-    website_url = ""
-    support_email = ""
-    impressum_url = ""
-    privacy_policy_url = ""
-    terms_url = ""
-    hero_title = ""
-    hero_text = ""
-    primary_color = ""
-    secondary_color = ""
-    accent_color = ""
-    logo_url = ""
-    
-    try:
-        facebook_business_whatsapp = settings.facebook_business_whatsapp
-        calendly_link = settings.calendly_link
-        analyzed_domain = settings.analyzed_domain
-        company_name = settings.company_name
-        website_url = settings.website_url
-        support_email = settings.support_email
-        impressum_url = settings.impressum_url
-        privacy_policy_url = settings.privacy_policy_url
-        terms_url = settings.terms_url
-        hero_title = settings.hero_title
-        hero_text = settings.hero_text
-        primary_color = settings.primary_color
-        secondary_color = settings.secondary_color
-        accent_color = settings.accent_color
-        logo_url = settings.logo_url
-    except:
-        # Fallback to direct .env reading
-        if env_file.exists():
-            with open(env_file, 'r') as f:
-                for line in f:
-                    line = line.strip()
-                    if line.startswith('FACEBOOK_BUSINESS_WHATSAPP='):
-                        facebook_business_whatsapp = line.split('=', 1)[1]
-                    elif line.startswith('CALENDLY_LINK='):
-                        calendly_link = line.split('=', 1)[1]
-                    elif line.startswith('ANALYZED_DOMAIN='):
-                        analyzed_domain = line.split('=', 1)[1]
-                    elif line.startswith('COMPANY_NAME='):
-                        company_name = line.split('=', 1)[1]
-                    elif line.startswith('WEBSITE_URL='):
-                        website_url = line.split('=', 1)[1]
-                    elif line.startswith('SUPPORT_EMAIL='):
-                        support_email = line.split('=', 1)[1]
-                    elif line.startswith('IMPRESSUM_URL='):
-                        impressum_url = line.split('=', 1)[1]
-                    elif line.startswith('PRIVACY_POLICY_URL='):
-                        privacy_policy_url = line.split('=', 1)[1]
-                    elif line.startswith('TERMS_URL='):
-                        terms_url = line.split('=', 1)[1]
-                    elif line.startswith('HERO_TITLE='):
-                        hero_title = line.split('=', 1)[1]
-                    elif line.startswith('HERO_TEXT='):
-                        hero_text = line.split('=', 1)[1]
-                    elif line.startswith('PRIMARY_COLOR='):
-                        primary_color = line.split('=', 1)[1]
-                    elif line.startswith('SECONDARY_COLOR='):
-                        secondary_color = line.split('=', 1)[1]
-                    elif line.startswith('ACCENT_COLOR='):
-                        accent_color = line.split('=', 1)[1]
-                    elif line.startswith('LOGO_URL='):
-                        logo_url = line.split('=', 1)[1]
+    """Internal function to get infrastructure configuration from environment variables."""
+    settings = get_settings()
     
     return {
-        "assistantId": assistant_id,
-        "publicKey": public_key,
-        # "privateKey": private_key,  # REMOVED: Private key should never be exposed to frontend
-        "facebookBusinessWhatsApp": facebook_business_whatsapp,
-        "calendlyLink": calendly_link,
-        "analyzedDomain": analyzed_domain,
-        "companyName": company_name,
-        "websiteUrl": website_url,
-        "supportEmail": support_email,
-        "impressumUrl": impressum_url,
-        "privacyPolicyUrl": privacy_policy_url,
-        "termsUrl": terms_url,
-        "heroTitle": hero_title,
-        "heroText": hero_text,
-        "primaryColor": primary_color,
-        "secondaryColor": secondary_color,
-        "accentColor": accent_color,
-        "logoUrl": logo_url
+        "assistantId": settings.assistant_id,
+        "publicKey": settings.public_key,
+        "privateKey": settings.vapi_private_key,
+        "facebookBusinessWhatsApp": settings.facebook_business_whatsapp,
+        "calendlyLink": settings.calendly_link,
+        "analyzedDomain": settings.analyzed_domain,
+        "configPassword": settings.config_password,
+        # Note: privateKey and config_password are not exposed in public APIs for security reasons
+    }
+
+
+def get_saas_config_internal() -> dict:
+    """Internal function to get SaaS customer configuration."""
+    saas_config = get_saas_config()
+    
+    return {
+        "companyName": saas_config.company_name,
+        "logoUrl": saas_config.logo_url,
+        "websiteUrl": saas_config.website_url,
+        "supportEmail": saas_config.support_email,
+        "impressumUrl": saas_config.impressum_url,
+        "privacyPolicyUrl": saas_config.privacy_policy_url,
+        "termsUrl": saas_config.terms_url,
+        "heroTitle": saas_config.hero_title,
+        "heroText": saas_config.hero_text,
+        "primaryColor": saas_config.primary_color,
+        "secondaryColor": saas_config.secondary_color,
+        "accentColor": saas_config.accent_color,
+        "poweredByText": saas_config.powered_by_text,
+        "poweredByUrl": saas_config.powered_by_url,
     }
 
 @app.get("/api/public-config")
 def get_public_config() -> dict:
-    """Public API for frontend configuration - only safe, non-sensitive data."""
+    """Public API for frontend configuration - combines infrastructure and SaaS config."""
     try:
-        settings = get_settings()
+        # Get infrastructure config (environment variables)
+        env_config = get_env_config_internal()
+        
+        # Get SaaS config (customer customization)
+        saas_config = get_saas_config_internal()
+        
+        # Combine both configs, SaaS config takes precedence for overlapping fields
         return {
-            "assistantId": settings.assistant_id,
-            "publicKey": settings.public_key,
-            "companyName": settings.company_name,
-            "logoUrl": settings.logo_url,
-            "primaryColor": settings.primary_color,
-            "secondaryColor": settings.secondary_color,
-            "accentColor": settings.accent_color,
-            "calendlyLink": settings.calendly_link,
-            "analyzedDomain": settings.analyzed_domain,
-            "websiteUrl": settings.website_url,
-            "supportEmail": settings.support_email,
-            "impressumUrl": settings.impressum_url,
-            "privacyPolicyUrl": settings.privacy_policy_url,
-            "termsUrl": settings.terms_url,
-            "heroTitle": settings.hero_title,
-            "heroText": settings.hero_text,
-            "facebookBusinessWhatsApp": settings.facebook_business_whatsapp,
+            # Infrastructure config (from environment variables)
+            "assistantId": env_config["assistantId"],
+            "publicKey": env_config["publicKey"],
+            "calendlyLink": env_config["calendlyLink"],
+            "analyzedDomain": env_config["analyzedDomain"],
+            "facebookBusinessWhatsApp": env_config["facebookBusinessWhatsApp"],
+            
+            # SaaS config (from customer configuration)
+            "companyName": saas_config["companyName"],
+            "logoUrl": saas_config["logoUrl"],
+            "websiteUrl": saas_config["websiteUrl"],
+            "supportEmail": saas_config["supportEmail"],
+            "impressumUrl": saas_config["impressumUrl"],
+            "privacyPolicyUrl": saas_config["privacyPolicyUrl"],
+            "termsUrl": saas_config["termsUrl"],
+            "heroTitle": saas_config["heroTitle"],
+            "heroText": saas_config["heroText"],
+            "primaryColor": saas_config["primaryColor"],
+            "secondaryColor": saas_config["secondaryColor"],
+            "accentColor": saas_config["accentColor"],
+            "poweredByText": saas_config["poweredByText"],
+            "poweredByUrl": saas_config["poweredByUrl"],
         }
     except Exception as e:
         return {"error": "Configuration not available"}
@@ -1533,7 +1465,63 @@ def get_public_config() -> dict:
 @app.get("/api/admin/config")
 def get_admin_config(auth: bool = Depends(verify_admin_auth)) -> dict:
     """Admin API for full configuration - requires authentication."""
-    return get_env_config_internal()
+    return {
+        "infrastructure": get_env_config_internal(),
+        "saas": get_saas_config_internal()
+    }
+
+
+@app.get("/api/saas-config")
+def get_saas_config_api() -> dict:
+    """Public API for SaaS configuration only."""
+    return get_saas_config_internal()
+
+
+@app.post("/api/saas-config")
+def save_saas_config_api(
+    company_name: str = Form(""),
+    logo_url: str = Form(""),
+    website_url: str = Form(""),
+    support_email: str = Form(""),
+    impressum_url: str = Form(""),
+    privacy_policy_url: str = Form(""),
+    terms_url: str = Form(""),
+    hero_title: str = Form(""),
+    hero_text: str = Form(""),
+    primary_color: str = Form(""),
+    secondary_color: str = Form(""),
+    accent_color: str = Form(""),
+    powered_by_text: str = Form(""),
+    powered_by_url: str = Form(""),
+) -> dict:
+    """Save SaaS configuration."""
+    try:
+        # Create SaaS config object
+        saas_config = SaaSConfig(
+            company_name=company_name,
+            logo_url=logo_url,
+            website_url=website_url,
+            support_email=support_email,
+            impressum_url=impressum_url,
+            privacy_policy_url=privacy_policy_url,
+            terms_url=terms_url,
+            hero_title=hero_title,
+            hero_text=hero_text,
+            primary_color=primary_color,
+            secondary_color=secondary_color,
+            accent_color=accent_color,
+            powered_by_text=powered_by_text,
+            powered_by_url=powered_by_url,
+        )
+        
+        # Save configuration
+        if save_saas_config(saas_config):
+            return {"success": True, "message": "SaaS configuration saved successfully"}
+        else:
+            return {"success": False, "message": "Failed to save SaaS configuration"}
+            
+    except Exception as e:
+        return {"success": False, "message": f"Error saving configuration: {str(e)}"}
 
 @app.get("/api/env-config")
 def get_env_config() -> dict:
