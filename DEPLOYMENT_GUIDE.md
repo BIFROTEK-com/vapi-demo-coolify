@@ -60,7 +60,7 @@ SHLINK_HTTPS=true
 1. **Neues Projekt erstellen** in Coolify
 2. **Repository verbinden** (GitHub/GitLab)
 3. **Docker Compose** als Build-Methode wählen
-4. **coolify.yml** als Konfigurationsdatei verwenden
+4. **docker-compose.yaml** als Konfigurationsdatei verwenden
 5. **Environment Variables** aus `.env` in Coolify eintragen
 6. **Deploy** starten
 

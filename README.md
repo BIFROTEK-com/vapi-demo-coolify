@@ -29,7 +29,7 @@ cp .env.example .env
 1. Neues Projekt in Coolify erstellen
 2. Repository verbinden
 3. Docker Compose als Build-Methode wählen
-4. `coolify.yml` als Konfigurationsdatei verwenden
+4. `docker-compose.yaml` als Konfigurationsdatei verwenden
 5. Environment Variables aus `.env` eintragen
 6. Deploy starten
 
