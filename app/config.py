@@ -86,6 +86,10 @@ class AppSettings(BaseSettings):
         default="",
         description="Hero Text - OPTIONAL: Set via HERO_TEXT env var"
     )
+    config_password: str = Field(
+        default="",
+        description="Config Password - OPTIONAL: Set via CONFIG_PASSWORD env var for admin access"
+    )
     
     # Redis Configuration
     redis_url: str = Field(

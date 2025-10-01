@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form, Query, HTTPException, Depends, Header
+from fastapi import FastAPI, Request, Form, Query, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -15,39 +15,17 @@ from typing import Optional
 load_dotenv()
 
 from .config import get_settings
+from .config_manager import config_manager
+from .config_functions import (
+    get_vapi_credentials, get_company_config, get_brand_colors, get_contact_config,
+    save_vapi_credentials, save_manual_inputs, save_domain_analysis
+)
 from .services.color_extractor import extract_brand_colors
 from .services.redis_service import redis_service
 from .services.shlink_service import shlink_service, ShortUrlRequest, ShortUrlResponse
-import base64
 
 
 app = FastAPI(title="VAPI Web SDK Integration")
-
-# Authentication function for admin endpoints
-def verify_admin_auth(authorization: str = Header(None)) -> bool:
-    """Verify admin authentication using config password."""
-    if not authorization:
-        raise HTTPException(status_code=401, detail="Authorization header required")
-    
-    try:
-        # Extract password from Basic Auth
-        scheme, credentials = authorization.split(' ', 1)
-        if scheme.lower() != 'basic':
-            raise HTTPException(status_code=401, detail="Basic authentication required")
-        
-        decoded_credentials = base64.b64decode(credentials).decode('utf-8')
-        username, password = decoded_credentials.split(':', 1)
-        
-        # Get config password from settings
-        settings = get_settings()
-        config_password = getattr(settings, 'config_password', '')
-        
-        if not config_password or password != config_password:
-            raise HTTPException(status_code=401, detail="Invalid credentials")
-        
-        return True
-    except Exception:
-        raise HTTPException(status_code=401, detail="Invalid authentication")
 
 # Add CORS middleware
 app.add_middleware(
@@ -1402,160 +1380,38 @@ def get_secure_config(password: str = Form(...)) -> dict:
     return get_env_config_internal()
 
 def get_env_config_internal() -> dict:
-    """Internal function to get configuration values from .env file."""
-    assistant_id = ""
-    public_key = ""
-    private_key = ""
-    
-    try:
-        settings = get_settings()
-        assistant_id = settings.assistant_id
-        public_key = settings.public_key
-        private_key = settings.vapi_private_key
-    except Exception:
-        # If settings can't be loaded, try to read from .env file directly
-        import os
-        from pathlib import Path
-        
-        env_file = Path(".env")
-        if env_file.exists():
-            with open(env_file, 'r') as f:
-                for line in f:
-                    line = line.strip()
-                    if line.startswith('ASSISTANT_ID='):
-                        assistant_id = line.split('=', 1)[1]
-                    elif line.startswith('PUBLIC_KEY='):
-                        public_key = line.split('=', 1)[1]
-                    elif line.startswith('VAPI_PRIVATE_KEY='):
-                        private_key = line.split('=', 1)[1]
-    
-    # Also load manual inputs and domain analysis
-    facebook_business_whatsapp = ""
-    calendly_link = ""
-    analyzed_domain = ""
-    company_name = ""
-    website_url = ""
-    support_email = ""
-    impressum_url = ""
-    privacy_policy_url = ""
-    terms_url = ""
-    hero_title = ""
-    hero_text = ""
-    primary_color = ""
-    secondary_color = ""
-    accent_color = ""
-    logo_url = ""
-    
-    try:
-        facebook_business_whatsapp = settings.facebook_business_whatsapp
-        calendly_link = settings.calendly_link
-        analyzed_domain = settings.analyzed_domain
-        company_name = settings.company_name
-        website_url = settings.website_url
-        support_email = settings.support_email
-        impressum_url = settings.impressum_url
-        privacy_policy_url = settings.privacy_policy_url
-        terms_url = settings.terms_url
-        hero_title = settings.hero_title
-        hero_text = settings.hero_text
-        primary_color = settings.primary_color
-        secondary_color = settings.secondary_color
-        accent_color = settings.accent_color
-        logo_url = settings.logo_url
-    except:
-        # Fallback to direct .env reading
-        if env_file.exists():
-            with open(env_file, 'r') as f:
-                for line in f:
-                    line = line.strip()
-                    if line.startswith('FACEBOOK_BUSINESS_WHATSAPP='):
-                        facebook_business_whatsapp = line.split('=', 1)[1]
-                    elif line.startswith('CALENDLY_LINK='):
-                        calendly_link = line.split('=', 1)[1]
-                    elif line.startswith('ANALYZED_DOMAIN='):
-                        analyzed_domain = line.split('=', 1)[1]
-                    elif line.startswith('COMPANY_NAME='):
-                        company_name = line.split('=', 1)[1]
-                    elif line.startswith('WEBSITE_URL='):
-                        website_url = line.split('=', 1)[1]
-                    elif line.startswith('SUPPORT_EMAIL='):
-                        support_email = line.split('=', 1)[1]
-                    elif line.startswith('IMPRESSUM_URL='):
-                        impressum_url = line.split('=', 1)[1]
-                    elif line.startswith('PRIVACY_POLICY_URL='):
-                        privacy_policy_url = line.split('=', 1)[1]
-                    elif line.startswith('TERMS_URL='):
-                        terms_url = line.split('=', 1)[1]
-                    elif line.startswith('HERO_TITLE='):
-                        hero_title = line.split('=', 1)[1]
-                    elif line.startswith('HERO_TEXT='):
-                        hero_text = line.split('=', 1)[1]
-                    elif line.startswith('PRIMARY_COLOR='):
-                        primary_color = line.split('=', 1)[1]
-                    elif line.startswith('SECONDARY_COLOR='):
-                        secondary_color = line.split('=', 1)[1]
-                    elif line.startswith('ACCENT_COLOR='):
-                        accent_color = line.split('=', 1)[1]
-                    elif line.startswith('LOGO_URL='):
-                        logo_url = line.split('=', 1)[1]
+    """Internal function to get configuration values with intelligent fallback."""
+    # Get all configuration using the new config manager
+    vapi_creds = get_vapi_credentials()
+    company_config = get_company_config()
+    brand_colors = get_brand_colors()
+    contact_config = get_contact_config()
     
     return {
-        "assistantId": assistant_id,
-        "publicKey": public_key,
+        "assistantId": vapi_creds["assistant_id"],
+        "publicKey": vapi_creds["public_key"],
         # "privateKey": private_key,  # REMOVED: Private key should never be exposed to frontend
-        "facebookBusinessWhatsApp": facebook_business_whatsapp,
-        "calendlyLink": calendly_link,
-        "analyzedDomain": analyzed_domain,
-        "companyName": company_name,
-        "websiteUrl": website_url,
-        "supportEmail": support_email,
-        "impressumUrl": impressum_url,
-        "privacyPolicyUrl": privacy_policy_url,
-        "termsUrl": terms_url,
-        "heroTitle": hero_title,
-        "heroText": hero_text,
-        "primaryColor": primary_color,
-        "secondaryColor": secondary_color,
-        "accentColor": accent_color,
-        "logoUrl": logo_url
+        "facebookBusinessWhatsApp": contact_config["facebook_business_whatsapp"],
+        "calendlyLink": contact_config["calendly_link"],
+        "analyzedDomain": config_manager.get_config_value("ANALYZED_DOMAIN"),
+        "companyName": company_config["company_name"],
+        "websiteUrl": company_config["website_url"],
+        "supportEmail": company_config["support_email"],
+        "impressumUrl": company_config["impressum_url"],
+        "privacyPolicyUrl": company_config["privacy_policy_url"],
+        "termsUrl": company_config["terms_url"],
+        "heroTitle": "",  # Not stored in config
+        "heroText": "",   # Not stored in config
+        "primaryColor": brand_colors["primary_color"],
+        "secondaryColor": brand_colors["secondary_color"],
+        "accentColor": brand_colors["accent_color"],
+        "logoUrl": company_config["logo_url"]
     }
-
-@app.get("/api/public-config")
-def get_public_config() -> dict:
-    """Public API for frontend configuration - only safe, non-sensitive data."""
-    try:
-        settings = get_settings()
-        return {
-            "assistantId": settings.assistant_id,
-            "publicKey": settings.public_key,
-            "companyName": settings.company_name,
-            "logoUrl": settings.logo_url,
-            "primaryColor": settings.primary_color,
-            "secondaryColor": settings.secondary_color,
-            "accentColor": settings.accent_color,
-            "calendlyLink": settings.calendly_link,
-            "analyzedDomain": settings.analyzed_domain,
-            "websiteUrl": settings.website_url,
-            "supportEmail": settings.support_email,
-            "impressumUrl": settings.impressum_url,
-            "privacyPolicyUrl": settings.privacy_policy_url,
-            "termsUrl": settings.terms_url,
-            "heroTitle": settings.hero_title,
-            "heroText": settings.hero_text,
-            "facebookBusinessWhatsApp": settings.facebook_business_whatsapp,
-        }
-    except Exception as e:
-        return {"error": "Configuration not available"}
-
-@app.get("/api/admin/config")
-def get_admin_config(auth: bool = Depends(verify_admin_auth)) -> dict:
-    """Admin API for full configuration - requires authentication."""
-    return get_env_config_internal()
 
 @app.get("/api/env-config")
 def get_env_config() -> dict:
-    """DEPRECATED: Use /api/public-config instead. This endpoint will be removed."""
-    return get_public_config()
+    """Public API for configuration values (deprecated - use /api/secure-config)."""
+    return get_env_config_internal()
 
 @app.get("/api/config-status")
 def get_config_status() -> dict:
@@ -1602,92 +1458,22 @@ def get_config_status() -> dict:
 
 
 @app.post("/save-vapi-credentials")
-async def save_vapi_credentials(
+async def save_vapi_credentials_endpoint(
     assistant_id: str = Form(...),
     public_key: str = Form(...),
     private_key: str = Form(default=""),
 ) -> dict[str, str]:
-    """Save VAPI credentials to .env file."""
-    try:
-        from pathlib import Path
-        
-        env_file = Path(".env")
-        
-        # Create .env file if it doesn't exist
-        if not env_file.exists():
-            with open(env_file, 'w') as f:
-                f.write("# VAPI Configuration\n")
-                f.write("# Generated by VAPI Demo Platform\n\n")
-                f.write("# VAPI Assistant ID (UUID format) - REQUIRED\n")
-                f.write(f"ASSISTANT_ID={assistant_id}\n\n")
-                f.write("# VAPI Public Key (UUID format) - REQUIRED\n")
-                f.write(f"PUBLIC_KEY={public_key}\n\n")
-                if private_key:
-                    f.write("# VAPI Private Key - OPTIONAL (for chat functionality)\n")
-                    f.write(f"VAPI_PRIVATE_KEY={private_key}\n")
-        else:
-            # Update existing .env file
-            lines = []
-            with open(env_file, 'r') as f:
-                lines = f.readlines()
-            
-            # Update or add credentials
-            assistant_found = False
-            public_key_found = False
-            private_key_found = False
-            
-            for i, line in enumerate(lines):
-                if line.strip().startswith('ASSISTANT_ID='):
-                    lines[i] = f"ASSISTANT_ID={assistant_id}\n"
-                    assistant_found = True
-                elif line.strip().startswith('PUBLIC_KEY='):
-                    lines[i] = f"PUBLIC_KEY={public_key}\n"
-                    public_key_found = True
-                elif line.strip().startswith('VAPI_PRIVATE_KEY='):
-                    if private_key:
-                        lines[i] = f"VAPI_PRIVATE_KEY={private_key}\n"
-                    else:
-                        lines[i] = ""  # Remove line if private_key is empty
-                    private_key_found = True
-            
-            # Add missing credentials
-            if not assistant_found:
-                lines.append(f"ASSISTANT_ID={assistant_id}\n")
-            if not public_key_found:
-                lines.append(f"PUBLIC_KEY={public_key}\n")
-            if not private_key_found and private_key:
-                lines.append(f"VAPI_PRIVATE_KEY={private_key}\n")
-            
-            # Write back to file
-            with open(env_file, 'w') as f:
-                f.writelines(lines)
-        
-        # Reset settings cache to reload new values
-        from .config import reset_settings_cache
-        reset_settings_cache()
-        
-        return {
-            "status": "success",
-            "message": "VAPI credentials saved successfully to .env file"
-        }
-        
-    except Exception as e:
-        return {
-            "status": "error",
-            "message": f"Failed to save credentials: {str(e)}"
-        }
+    """Save VAPI credentials with intelligent fallback."""
+    return save_vapi_credentials(assistant_id, public_key, private_key)
 
 
 @app.post("/save-manual-inputs")
-async def save_manual_inputs(
+async def save_manual_inputs_endpoint(
     facebook_business_whatsapp: str = Form(default=""),
     calendly_link: str = Form(default=""),
 ) -> dict[str, str]:
-    """Save manual inputs to .env file."""
-    try:
-        from pathlib import Path
-        
-        env_file = Path(".env")
+    """Save manual inputs with intelligent fallback."""
+    return save_manual_inputs(facebook_business_whatsapp, calendly_link)
         
         # Read existing .env content
         lines = []
@@ -1755,8 +1541,15 @@ async def save_domain_analysis(
     accent_color: str = Form(default=""),
     logo_url: str = Form(default=""),
 ) -> dict[str, str]:
-    """Save domain analysis results to .env file."""
+    """Save domain analysis results to .env file (local development only)."""
     try:
+        # Check if running in Coolify (environment variables are managed by Coolify)
+        if os.getenv("COOLIFY_URL") or os.getenv("COOLIFY_FQDN"):
+            return {
+                "status": "info",
+                "message": "In Coolify deployment, environment variables are managed by Coolify dashboard. Please update them there."
+            }
+        
         from pathlib import Path
         
         env_file = Path(".env")
@@ -1921,26 +1714,29 @@ async def analyze_brand(domain: str = Query(..., description="Domain to analyze"
             secondary_color = "#3a0ca3"  # Standard dark blue  
             accent_color = "#4cc9f0"     # Standard light blue
         
-        # Automatically save to .env file
-        try:
-            await save_domain_analysis(
-                analyzed_domain=clean_domain,
-                company_name=company_name,
-                website_url=website_url,
-                support_email=support_email,
-                impressum_url=impressum_url,
-                privacy_policy_url=privacy_url,
-                terms_url=terms_url,
-                hero_title="",  # Empty, user can fill manually
-                hero_text="",   # Empty, user can fill manually
-                primary_color=primary_color,
-                secondary_color=secondary_color,
-                accent_color=accent_color,
-                logo_url=logo_url_primary
-            )
-            print(f"✅ Domain analysis results automatically saved to .env")
-        except Exception as e:
-            print(f"⚠️ Failed to save domain analysis to .env: {e}")
+        # Automatically save to .env file (local development only)
+        if not (os.getenv("COOLIFY_URL") or os.getenv("COOLIFY_FQDN")):
+            try:
+                await save_domain_analysis(
+                    analyzed_domain=clean_domain,
+                    company_name=company_name,
+                    website_url=website_url,
+                    support_email=support_email,
+                    impressum_url=impressum_url,
+                    privacy_policy_url=privacy_url,
+                    terms_url=terms_url,
+                    hero_title="",  # Empty, user can fill manually
+                    hero_text="",   # Empty, user can fill manually
+                    primary_color=primary_color,
+                    secondary_color=secondary_color,
+                    accent_color=accent_color,
+                    logo_url=logo_url_primary
+                )
+                print(f"✅ Domain analysis results automatically saved to .env")
+            except Exception as e:
+                print(f"⚠️ Failed to save domain analysis to .env: {e}")
+        else:
+            print(f"ℹ️ Running in Coolify - domain analysis results not saved to .env (managed by Coolify)")
 
         return {
             "success": True,

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form, Query, HTTPException, Depends, Header
+from fastapi import FastAPI, Request, Form, Query, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -18,36 +18,9 @@ from .config import get_settings
 from .services.color_extractor import extract_brand_colors
 from .services.redis_service import redis_service
 from .services.shlink_service import shlink_service, ShortUrlRequest, ShortUrlResponse
-import base64
 
 
 app = FastAPI(title="VAPI Web SDK Integration")
-
-# Authentication function for admin endpoints
-def verify_admin_auth(authorization: str = Header(None)) -> bool:
-    """Verify admin authentication using config password."""
-    if not authorization:
-        raise HTTPException(status_code=401, detail="Authorization header required")
-    
-    try:
-        # Extract password from Basic Auth
-        scheme, credentials = authorization.split(' ', 1)
-        if scheme.lower() != 'basic':
-            raise HTTPException(status_code=401, detail="Basic authentication required")
-        
-        decoded_credentials = base64.b64decode(credentials).decode('utf-8')
-        username, password = decoded_credentials.split(':', 1)
-        
-        # Get config password from settings
-        settings = get_settings()
-        config_password = getattr(settings, 'config_password', '')
-        
-        if not config_password or password != config_password:
-            raise HTTPException(status_code=401, detail="Invalid credentials")
-        
-        return True
-    except Exception:
-        raise HTTPException(status_code=401, detail="Invalid authentication")
 
 # Add CORS middleware
 app.add_middleware(
@@ -1451,13 +1424,7 @@ def get_env_config_internal() -> dict:
         calendly_link = settings.calendly_link
         analyzed_domain = settings.analyzed_domain
         company_name = settings.company_name
-        website_url = settings.website_url
-        support_email = settings.support_email
-        impressum_url = settings.impressum_url
-        privacy_policy_url = settings.privacy_policy_url
-        terms_url = settings.terms_url
-        hero_title = settings.hero_title
-        hero_text = settings.hero_text
+
         primary_color = settings.primary_color
         secondary_color = settings.secondary_color
         accent_color = settings.accent_color
@@ -1520,42 +1487,10 @@ def get_env_config_internal() -> dict:
         "logoUrl": logo_url
     }
 
-@app.get("/api/public-config")
-def get_public_config() -> dict:
-    """Public API for frontend configuration - only safe, non-sensitive data."""
-    try:
-        settings = get_settings()
-        return {
-            "assistantId": settings.assistant_id,
-            "publicKey": settings.public_key,
-            "companyName": settings.company_name,
-            "logoUrl": settings.logo_url,
-            "primaryColor": settings.primary_color,
-            "secondaryColor": settings.secondary_color,
-            "accentColor": settings.accent_color,
-            "calendlyLink": settings.calendly_link,
-            "analyzedDomain": settings.analyzed_domain,
-            "websiteUrl": settings.website_url,
-            "supportEmail": settings.support_email,
-            "impressumUrl": settings.impressum_url,
-            "privacyPolicyUrl": settings.privacy_policy_url,
-            "termsUrl": settings.terms_url,
-            "heroTitle": settings.hero_title,
-            "heroText": settings.hero_text,
-            "facebookBusinessWhatsApp": settings.facebook_business_whatsapp,
-        }
-    except Exception as e:
-        return {"error": "Configuration not available"}
-
-@app.get("/api/admin/config")
-def get_admin_config(auth: bool = Depends(verify_admin_auth)) -> dict:
-    """Admin API for full configuration - requires authentication."""
-    return get_env_config_internal()
-
 @app.get("/api/env-config")
 def get_env_config() -> dict:
-    """DEPRECATED: Use /api/public-config instead. This endpoint will be removed."""
-    return get_public_config()
+    """Public API for configuration values (deprecated - use /api/secure-config)."""
+    return get_env_config_internal()
 
 @app.get("/api/config-status")
 def get_config_status() -> dict:
@@ -1683,16 +1618,8 @@ async def save_manual_inputs(
     facebook_business_whatsapp: str = Form(default=""),
     calendly_link: str = Form(default=""),
 ) -> dict[str, str]:
-    """Save manual inputs to .env file."""
-    try:
-        from pathlib import Path
-        
-        env_file = Path(".env")
-        
-        # Read existing .env content
-        lines = []
-        if env_file.exists():
-            with open(env_file, 'r') as f:
+    """Save manual inputs with intelligent fallback."""
+    return save_manual_inputs(facebook_business_whatsapp, calendly_link)
                 lines = f.readlines()
         
         # Update or add manual inputs

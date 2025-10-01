@@ -6,7 +6,7 @@ var apiKey = null;
 // Load VAPI credentials securely from backend
 async function loadVapiCredentials() {
     try {
-        const response = await fetch('/api/env-config');
+        const response = await fetch('/api/public-config');
         const config = await response.json();
         assistant = config.assistantId;
         apiKey = config.publicKey;
