@@ -618,7 +618,11 @@
         // Load Environment Status
         async function loadEnvironmentStatus() {
             try {
-                const response = await fetch('/api/admin/config');
+                const response = await fetch('/api/admin/config', {
+                    headers: {
+                        'Authorization': 'Basic ' + authToken
+                    }
+                });
                 const data = await response.json();
                 
                 const envStatus = document.getElementById('envStatus');
