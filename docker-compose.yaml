@@ -30,8 +30,8 @@ services:
       - FACEBOOK_BUSINESS_WHATSAPP=${FACEBOOK_BUSINESS_WHATSAPP}
       - CALENDLY_LINK=${CALENDLY_LINK}
       
-    volumes:
-      - ./.env:/app/.env:ro  # Mount .env file if it exists (local development only)
+    # volumes:
+      # - ./.env:/app/.env:ro  # DISABLED: Coolify manages environment variables
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
