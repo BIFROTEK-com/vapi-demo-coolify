@@ -104,6 +104,7 @@ async def root(request: Request):
         "privacy_policy_url": company_config["privacy_policy_url"],
         "terms_url": company_config["terms_url"],
         "logo_url": company_config["logo_url"],
+        "logo_urls": [company_config["logo_url"]] if company_config["logo_url"] else [],
         "facebook_business_whatsapp": contact_config["facebook_business_whatsapp"],
         "calendly_link": contact_config["calendly_link"],
         "primary_color": brand_colors["primary_color"],
