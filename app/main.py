@@ -38,9 +38,9 @@ def verify_admin_auth(authorization: str = Header(None)) -> bool:
         decoded_credentials = base64.b64decode(credentials).decode('utf-8')
         username, password = decoded_credentials.split(':', 1)
         
-        # Get config password from settings
+        # Get config password from settings or environment
         settings = get_settings()
-        config_password = getattr(settings, 'config_password', '')
+        config_password = getattr(settings, 'config_password', '') or os.getenv('CONFIG_PASSWORD', '')
         
         if not config_password or password != config_password:
             raise HTTPException(status_code=401, detail="Invalid credentials")
