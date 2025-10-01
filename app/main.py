@@ -996,49 +996,25 @@ def public_webapp(
             "required_params": required_params,
             "current_url": str(request.url)
         })
-    # Load VAPI credentials and config - Always read from .env file directly for real-time updates
-    assistant_id = ""
-    public_key = ""
-    calendly_link = ""
-    
-    # Load SAAS-Agentur config values
-    saas_company_name = ""
-    saas_logo_url = ""
-    saas_website_url = ""
-    support_email = ""
-    impressum_url = ""
-    privacy_url = ""
-    terms_url = ""
-    
-    # Always read from .env file directly to get real-time updates
+    # Load VAPI credentials and config from environment variables
     import os
-    from pathlib import Path
+    from app.config import get_settings
     
-    env_file = Path(".env")
-    if env_file.exists():
-        with open(env_file, 'r') as f:
-            for line in f:
-                line = line.strip()
-                if line.startswith('ASSISTANT_ID='):
-                    assistant_id = line.split('=', 1)[1]
-                elif line.startswith('PUBLIC_KEY='):
-                    public_key = line.split('=', 1)[1]
-                elif line.startswith('CALENDLY_LINK='):
-                    calendly_link = line.split('=', 1)[1]
-                elif line.startswith('COMPANY_NAME='):
-                    saas_company_name = line.split('=', 1)[1]
-                elif line.startswith('LOGO_URL='):
-                    saas_logo_url = line.split('=', 1)[1]
-                elif line.startswith('WEBSITE_URL='):
-                    saas_website_url = line.split('=', 1)[1]
-                elif line.startswith('SUPPORT_EMAIL='):
-                    support_email = line.split('=', 1)[1]
-                elif line.startswith('IMPRESSUM_URL='):
-                    impressum_url = line.split('=', 1)[1]
-                elif line.startswith('PRIVACY_POLICY_URL='):
-                    privacy_url = line.split('=', 1)[1]
-                elif line.startswith('TERMS_URL='):
-                    terms_url = line.split('=', 1)[1]
+    settings = get_settings()
+    
+    # VAPI credentials
+    assistant_id = settings.assistant_id
+    public_key = settings.public_key
+    calendly_link = settings.calendly_link
+    
+    # Load SAAS-Agentur config values from environment
+    saas_company_name = settings.company_name
+    saas_logo_url = settings.logo_url
+    saas_website_url = settings.website_url
+    support_email = settings.support_email
+    impressum_url = settings.impressum_url
+    privacy_url = settings.privacy_policy_url
+    terms_url = settings.terms_url
     
     # Extract company name from domain for personalization
     if customer_domain:
@@ -1051,12 +1027,13 @@ def public_webapp(
         if not company_name:  # Default company name when no domain and no company_name
             company_name = "VAPI"
     
-    # Extract brand colors from domain if provided
-    primary_color = "#4361ee"    # Default blue
-    secondary_color = "#3a0ca3"  # Default dark blue  
-    accent_color = "#4cc9f0"     # Default light blue
+    # Load brand colors from environment variables (SaaS agency config)
+    primary_color = settings.primary_color or "#4361ee"    # Default blue
+    secondary_color = settings.secondary_color or "#3a0ca3"  # Default dark blue  
+    accent_color = settings.accent_color or "#4cc9f0"     # Default light blue
     
-    if customer_domain and clean_domain:
+    # If no colors set in environment, try to extract from customer domain
+    if customer_domain and clean_domain and not settings.primary_color:
         try:
             # Extract brand colors using the color extractor service
             extracted_primary, extracted_secondary, extracted_accent = extract_brand_colors(clean_domain)
@@ -1083,8 +1060,14 @@ def public_webapp(
     # Personalized configuration based on parameters
     demo_agent_title = f"{company_name} KI-Assistent"
     
-    # Create personalized messages
-    if customer_name and company_name:
+    # Create personalized messages - use SaaS agency config if available
+    if settings.hero_title and settings.hero_text:
+        # Use SaaS agency configured hero content
+        hero_title = settings.hero_title
+        hero_subtitle = settings.hero_text
+        welcome_message = f"Willkommen! {settings.hero_text}"
+        first_message = f"Hallo! Ich bin Ihr KI-Assistent. {settings.hero_text}"
+    elif customer_name and company_name:
         welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
         first_message = f"Hallo {customer_name}! Ich bin der KI-Assistent von {company_name} und helfe Ihnen gerne bei allen Fragen. Wie kann ich Ihnen behilflich sein?"
         hero_title = f"Hallo {customer_name}!"
