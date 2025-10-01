@@ -530,14 +530,16 @@
             }
         });
 
-        // API Key Toggle
+        // API Key Toggle (only if elements exist)
         const toggleApiKey = document.getElementById('toggleApiKey');
         const vapiApiKey = document.getElementById('vapiApiKey');
 
-        toggleApiKey.addEventListener('click', () => {
-            const type = vapiApiKey.type === 'password' ? 'text' : 'password';
-            vapiApiKey.type = type;
-        });
+        if (toggleApiKey && vapiApiKey) {
+            toggleApiKey.addEventListener('click', () => {
+                const type = vapiApiKey.type === 'password' ? 'text' : 'password';
+                vapiApiKey.type = type;
+            });
+        }
 
         // Toast Notification System
         function showToast(title, message, type = 'success') {
