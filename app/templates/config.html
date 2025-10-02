@@ -871,8 +871,8 @@
                     accent_color: document.getElementById('secondaryColor').value, // Using secondary as accent for now
                     hero_title: document.getElementById('companyName').value,
                     hero_text: document.getElementById('welcomeMessage').value,
-                    powered_by_text: 'Powered by BIFROTEK',
-                    powered_by_url: 'https://bifrotek.com'
+                    powered_by_text: '',
+                    powered_by_url: ''
                 };
 
                 const response = await fetch('/api/saas-config', {

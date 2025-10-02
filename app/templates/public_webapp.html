@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ company_name or "VAPI" }} - KI Assistent</title>
+    <title>{{ company_name }} - KI Assistent</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
@@ -663,25 +663,27 @@
                         <h1 class="text-2xl font-bold bg-gradient-to-r from-primary-500 to-accent bg-clip-text text-transparent">
                             {{ demo_agent_title or "KI-Assistent" | e }}
                         </h1>
+                        {% if powered_by_text and powered_by_url %}
                         <div class="flex items-center space-x-1">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Powered by</span>
-                            <a href="{{ saas_website_url or 'https://bifrotek.com' }}" 
+                            <span class="text-sm text-gray-600 dark:text-gray-400">{{ powered_by_text }}</span>
+                            <a href="{{ powered_by_url }}" 
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="flex items-center space-x-1 hover:opacity-80 transition-opacity duration-200">
                                 {% if saas_logo_url %}
                                 <div class="w-4 h-4 rounded overflow-hidden">
                                     <img src="{{ saas_logo_url }}" 
-                                         alt="{{ saas_company_name or 'BIFROTEK' }} Logo" 
+                                         alt="{{ saas_company_name or company_name }} Logo" 
                                          class="w-full h-full object-contain"
                                          onerror="this.style.display='none'">
                                 </div>
                                 {% endif %}
                                 <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                                    {{ saas_company_name or "BIFROTEK" }}
+                                    {{ saas_company_name or company_name }}
                                 </span>
                             </a>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 
@@ -2157,10 +2159,10 @@
                 <!-- Company Info -->
                 <div class="md:col-span-2">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        {{ saas_company_name or "Bifrotek" }}
+                        {{ saas_company_name or company_name }}
                     </h3>
                     <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-md">
-                        Ihr intelligenter KI-Assistent für {{ company_name or "Ihr Unternehmen" }}. 
+                        Ihr intelligenter KI-Assistent für {{ company_name }}. 
                         Voice-First Technologie für bessere Kundenkommunikation.
                     </p>
                     {% if calendly_link %}
@@ -2226,13 +2228,14 @@
             <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 <!-- Copyright -->
                 <div class="text-sm text-gray-500 dark:text-gray-400">
-                    © 2025 {{ saas_company_name or "Bifrotek" }}. Alle Rechte vorbehalten.
+                    © 2025 {{ saas_company_name or company_name }}. Alle Rechte vorbehalten.
                 </div>
                 
                 <!-- Powered By -->
+                {% if powered_by_text and powered_by_url %}
                 <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-500 dark:text-gray-400">Powered by</span>
-                    <a href="{{ saas_website_url or 'https://bifrotek.com' }}" 
+                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ powered_by_text }}</span>
+                    <a href="{{ powered_by_url }}" 
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-200">
@@ -2245,10 +2248,11 @@
                         </div>
                         {% endif %}
                         <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                            {{ saas_company_name or "Bifrotek" }}
+                            {{ saas_company_name or company_name }}
                         </span>
                     </a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </footer>
@@ -2291,7 +2295,7 @@
                 <div class="space-y-4">
                     <div>
                         <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">E-Mail</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ support_email or "info@beispiel.de" }}</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ support_email }}</p>
                     </div>
                     {% if calendly_link %}
                     <div>

@@ -157,11 +157,11 @@ class SaaSConfig(BaseModel):
     
     # Additional Branding
     powered_by_text: str = Field(
-        default="Powered by BIFROTEK",
+        default="",
         description="Powered by text in footer"
     )
     powered_by_url: str = Field(
-        default="https://bifrotek.com",
+        default="",
         description="Powered by URL in footer"
     )
     
