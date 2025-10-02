@@ -334,6 +334,60 @@
                                class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
                     </div>
 
+                    <!-- Hero Title -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Hero Titel
+                        </label>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 mb-3">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div class="text-sm">
+                                    <p class="text-blue-800 dark:text-blue-200 font-medium mb-1">💡 Platzhalter verfügbar:</p>
+                                    <div class="grid grid-cols-2 gap-2 text-xs text-blue-700 dark:text-blue-300">
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_name}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{company_name}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_domain}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_email}</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" 
+                               id="heroTitle"
+                               placeholder="Hallo {customer_name}!"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <!-- Hero Text -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Hero Text
+                        </label>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 mb-3">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div class="text-sm">
+                                    <p class="text-blue-800 dark:text-blue-200 font-medium mb-1">💡 Platzhalter verfügbar:</p>
+                                    <div class="grid grid-cols-2 gap-2 text-xs text-blue-700 dark:text-blue-300">
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_name}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{company_name}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_domain}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_email}</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" 
+                               id="heroText"
+                               placeholder="Ihr persönlicher KI-Assistent für {company_name}"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
                     <!-- Welcome Message -->
                     <div class="space-y-3">
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -373,6 +427,47 @@
                                id="ctaText"
                                placeholder="Jetzt ausprobieren"
                                class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <!-- Calendly Link -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Calendly Link
+                        </label>
+                        <input type="url" 
+                               id="calendlyLink"
+                               placeholder="https://calendly.com/ihr-name/30min"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <!-- First Chat Message -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Erste Chat-Nachricht
+                        </label>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 mb-3">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div class="text-sm">
+                                    <p class="text-blue-800 dark:text-blue-200 font-medium mb-1">💡 Platzhalter verfügbar:</p>
+                                    <div class="grid grid-cols-2 gap-2 text-xs text-blue-700 dark:text-blue-300">
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_name}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{company_name}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_domain}</code>
+                                        <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">{customer_email}</code>
+                                    </div>
+                                    <p class="text-blue-600 dark:text-blue-400 mt-2 text-xs">
+                                        <strong>Beispiel:</strong> "Hallo {customer_name}! Ich bin der KI-Assistent von {company_name}. Wie kann ich Ihnen helfen?"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <textarea id="firstMessage"
+                                  rows="3"
+                                  placeholder="Hallo {customer_name}! Ich bin der KI-Assistent von {company_name}. Wie kann ich Ihnen helfen?"
+                                  class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none"></textarea>
                     </div>
                 </form>
             </div>
@@ -456,6 +551,50 @@
                         <input type="url" 
                                id="saasTermsUrl"
                                placeholder="https://ihre-website.com/agb"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Powered By Configuration -->
+            <div class="mt-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Powered By Konfiguration</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Powered By Text
+                        </label>
+                        <input type="text" 
+                               id="poweredByText"
+                               placeholder="Powered by"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Powered By URL
+                        </label>
+                        <input type="url" 
+                               id="poweredByUrl"
+                               placeholder="https://bifrotek.com"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Powered By Company
+                        </label>
+                        <input type="text" 
+                               id="poweredByCompany"
+                               placeholder="BIFROTEK"
                                class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
                     </div>
                 </div>
@@ -835,7 +974,19 @@
                 document.getElementById('secondaryColor').value = data.secondaryColor || '#3a0ca3';
                 document.getElementById('secondaryColorText').value = data.secondaryColor || '#3a0ca3';
                 document.getElementById('companyName').value = data.companyName || '';
-                document.getElementById('welcomeMessage').value = data.heroText || '';
+                
+                // Hero content fields
+                document.getElementById('heroTitle').value = data.heroTitle || '';
+                document.getElementById('heroText').value = data.heroText || '';
+                document.getElementById('welcomeMessage').value = data.welcomeMessage || '';
+                document.getElementById('ctaText').value = data.ctaText || '';
+                document.getElementById('calendlyLink').value = data.calendlyLink || '';
+                document.getElementById('firstMessage').value = data.firstMessage || '';
+                
+                // Powered by fields
+                document.getElementById('poweredByText').value = data.poweredByText || '';
+                document.getElementById('poweredByUrl').value = data.poweredByUrl || '';
+                document.getElementById('poweredByCompany').value = data.poweredByCompany || '';
                 
                 // Update color fields visibility
                 toggleColorFields();
@@ -869,10 +1020,15 @@
                     primary_color: document.getElementById('primaryColor').value,
                     secondary_color: document.getElementById('secondaryColor').value,
                     accent_color: document.getElementById('secondaryColor').value, // Using secondary as accent for now
-                    hero_title: document.getElementById('companyName').value,
-                    hero_text: document.getElementById('welcomeMessage').value,
-                    powered_by_text: '',
-                    powered_by_url: ''
+                    hero_title: document.getElementById('heroTitle').value,
+                    hero_text: document.getElementById('heroText').value,
+                    welcome_message: document.getElementById('welcomeMessage').value,
+                    cta_text: document.getElementById('ctaText').value,
+                    calendly_link: document.getElementById('calendlyLink').value,
+                    first_message: document.getElementById('firstMessage').value,
+                    powered_by_text: document.getElementById('poweredByText').value,
+                    powered_by_url: document.getElementById('poweredByUrl').value,
+                    powered_by_company: document.getElementById('poweredByCompany').value
                 };
 
                 const response = await fetch('/api/saas-config', {
@@ -909,6 +1065,8 @@
             const secondaryColor = document.getElementById('secondaryColor').value || '#4cc9f0';
             const welcomeMessage = document.getElementById('welcomeMessage').value || '';
             const ctaText = document.getElementById('ctaText').value || '';
+            const calendlyLink = document.getElementById('calendlyLink').value || '';
+            const firstMessage = document.getElementById('firstMessage').value || '';
             
             // Build URL with required parameters for /webapp route
             let previewUrl = '/webapp';
@@ -921,12 +1079,12 @@
             previewUrl += `&customer_email=${encodeURIComponent('demo@' + domain)}`;
             previewUrl += `&company_name=${encodeURIComponent(companyName)}`;
             
-            // Add optional parameters if they have values
+            // Add optional parameters if they have values (only non-text parameters)
             if (logoUrl) previewUrl += `&logo_url=${encodeURIComponent(logoUrl)}`;
             if (primaryColor) previewUrl += `&primary_color=${encodeURIComponent(primaryColor)}`;
             if (secondaryColor) previewUrl += `&secondary_color=${encodeURIComponent(secondaryColor)}`;
-            if (welcomeMessage) previewUrl += `&welcome_message=${encodeURIComponent(welcomeMessage)}`;
-            if (ctaText) previewUrl += `&cta_text=${encodeURIComponent(ctaText)}`;
+            // Note: Text parameters (welcomeMessage, ctaText, calendlyLink, firstMessage) 
+            // are now handled via SaaS configuration, not URL parameters
             
             setTimeout(() => {
                 window.open(previewUrl, '_blank');

@@ -664,21 +664,21 @@
                             {{ demo_agent_title or "KI-Assistent" | e }}
                         </h1>
                         <div class="flex items-center space-x-1">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Powered by</span>
-                            <a href="{{ saas_website_url or '#' }}" 
+                            <span class="text-sm text-gray-600 dark:text-gray-400">{{ powered_by_text or "Powered by" | e }}</span>
+                            <a href="{{ powered_by_url or saas_website_url or '#' }}" 
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="flex items-center space-x-1 hover:opacity-80 transition-opacity duration-200">
-                                {% if saas_logo_url %}
+                                {% if powered_by_company %}
                                 <div class="w-4 h-4 rounded overflow-hidden">
-                                    <img src="{{ saas_logo_url }}" 
-                                         alt="{{ saas_company_name or company_name }} Logo" 
+                                    <img src="https://logo.clearbit.com/bifrotek.com" 
+                                         alt="{{ powered_by_company }} Logo" 
                                          class="w-full h-full object-contain"
                                          onerror="this.style.display='none'">
                                 </div>
                                 {% endif %}
                                 <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                                    {{ saas_company_name or company_name }}
+                                    {{ powered_by_company or saas_company_name or company_name | e }}
                                 </span>
                             </a>
                         </div>
@@ -731,7 +731,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"></path>
                 </svg>
                 <span class="text-sm font-medium">
-                    Demo für {{ customer_domain | e }}
+                    {{ cta_text or "Demo für " + customer_domain | e }}
                 </span>
             </div>
             {% endif %}
@@ -1711,7 +1711,7 @@
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="bg-white text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center no-underline">
-                        Möglichkeiten besprechen
+                        {{ cta_text or "Möglichkeiten besprechen" }}
                     </a>
                 </div>
             </div>
@@ -2120,7 +2120,7 @@
                     <!-- Call to Action -->
                     <div class="bg-gradient-to-r from-primary-500/10 to-accent/10 rounded-2xl p-8 text-center border border-primary-200/20">
                         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Lassen Sie uns Ihre individuellen Möglichkeiten besprechen
+                            {{ cta_text or "Lassen Sie uns Ihre individuellen Möglichkeiten besprechen" }}
                         </h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
                             Jedes Unternehmen ist anders. In einem kurzen Gespräch zeigen wir Ihnen, 
@@ -2133,7 +2133,7 @@
                                rel="noopener noreferrer"
                                class="bg-gradient-to-r from-primary-500 to-accent text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-primary-600 hover:to-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2">
                                 <span>📅</span>
-                                <span>Beratungsgespräch vereinbaren</span>
+                                <span>{{ cta_text or "Beratungsgespräch vereinbaren" }}</span>
                             </a>
                             <div class="text-sm text-gray-500 dark:text-gray-400">
                                 ⏱️ 15-30 Minuten | Kostenlos & unverbindlich
@@ -2168,7 +2168,7 @@
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="inline-flex items-center text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200">
-                        Termin vereinbaren →
+                        {{ cta_text or "Termin vereinbaren" }} →
                     </a>
                     {% endif %}
                 </div>
@@ -2214,7 +2214,7 @@
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200">
-                                Termin buchen
+                                {{ cta_text or "Termin buchen" }}
                             </a>
                         </li>
                         {% endif %}
@@ -2231,21 +2231,21 @@
                 
                 <!-- Powered By -->
                 <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-500 dark:text-gray-400">Powered by</span>
-                    <a href="{{ saas_website_url or '#' }}" 
+                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ powered_by_text or "Powered by" | e }}</span>
+                    <a href="{{ powered_by_url or saas_website_url or '#' }}" 
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-200">
-                        {% if saas_logo_url %}
+                        {% if powered_by_company %}
                         <div class="w-5 h-5 rounded overflow-hidden">
-                            <img src="{{ saas_logo_url }}" 
-                                 alt="{{ saas_company_name }} Logo" 
+                            <img src="https://logo.clearbit.com/bifrotek.com" 
+                                 alt="{{ powered_by_company }} Logo" 
                                  class="w-full h-full object-contain"
                                  onerror="this.style.display='none'">
                         </div>
                         {% endif %}
                         <span class="text-sm font-semibold text-gray-900 dark:text-white">
-                            {{ saas_company_name or company_name }}
+                            {{ powered_by_company or saas_company_name or company_name | e }}
                         </span>
                     </a>
                 </div>
@@ -2295,12 +2295,12 @@
                     </div>
                     {% if calendly_link %}
                     <div>
-                        <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Termin vereinbaren</h4>
+                        <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">{{ cta_text or "Termin vereinbaren" }}</h4>
                         <a href="{{ calendly_link }}" 
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="inline-flex items-center text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200">
-                            Jetzt buchen →
+                            {{ cta_text or "Jetzt buchen" }} →
                         </a>
                     </div>
                     {% endif %}

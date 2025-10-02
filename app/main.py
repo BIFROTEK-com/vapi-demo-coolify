@@ -1124,28 +1124,66 @@ def public_webapp(
         # Use configured hero content with placeholder replacement
         hero_title = replace_placeholders(hero_title, customer_name, company_name, customer_domain, customer_email)
         hero_subtitle = replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)
-        welcome_message = f"Willkommen! {replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)}"
-        first_message = f"Hallo! Ich bin Ihr KI-Assistent. {replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)}"
+        
+        # Use configured welcome message if available, otherwise use hero_text
+        if saas_config.welcome_message:
+            welcome_message = replace_placeholders(saas_config.welcome_message, customer_name, company_name, customer_domain, customer_email)
+        else:
+            welcome_message = replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)
+        
+        # Use configured first message if available, otherwise generate from hero_text
+        if saas_config.first_message:
+            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
+        else:
+            first_message = f"Hallo! Ich bin Ihr KI-Assistent. {replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)}"
     elif customer_name and company_name:
-        welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
-        first_message = f"Hallo {customer_name}! Ich bin der KI-Assistent von {company_name} und helfe Ihnen gerne bei allen Fragen. Wie kann ich Ihnen behilflich sein?"
-        hero_title = f"Hallo {customer_name}!"
-        hero_subtitle = f"Ihr persönlicher KI-Assistent für {company_name}"
+        if saas_config.welcome_message:
+            welcome_message = replace_placeholders(saas_config.welcome_message, customer_name, company_name, customer_domain, customer_email)
+        else:
+            welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
+        if saas_config.first_message:
+            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
+        else:
+            first_message = f"Hallo {customer_name}! Ich bin der KI-Assistent von {company_name} und helfe Ihnen gerne bei allen Fragen. Wie kann ich Ihnen behilflich sein?"
+        if saas_config.hero_title:
+            hero_title = replace_placeholders(saas_config.hero_title, customer_name, company_name, customer_domain, customer_email)
+        else:
+            hero_title = f"Hallo {customer_name}!"
+        if saas_config.hero_text:
+            hero_subtitle = replace_placeholders(saas_config.hero_text, customer_name, company_name, customer_domain, customer_email)
+        else:
+            hero_subtitle = f"Ihr persönlicher KI-Assistent für {company_name}"
     elif customer_name:
         welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Ihre Fragen."
-        first_message = f"Hallo {customer_name}! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?"
+        if saas_config.first_message:
+            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
+        else:
+            first_message = f"Hallo {customer_name}! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?"
         hero_title = f"Hallo {customer_name}!"
         hero_subtitle = "Ihr persönlicher KI-Assistent"
     elif company_name:
         welcome_message = f"Willkommen! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
-        first_message = f"Hallo! Ich bin der KI-Assistent von {company_name}. Wie kann ich Ihnen helfen?"
+        if saas_config.first_message:
+            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
+        else:
+            first_message = f"Hallo! Ich bin der KI-Assistent von {company_name}. Wie kann ich Ihnen helfen?"
         hero_title = f"Willkommen bei {company_name}"
         hero_subtitle = "Ihr KI-Assistent"
     else:
         welcome_message = "Willkommen! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Ihre Fragen."
-        first_message = "Hallo! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?"
+        if saas_config.first_message:
+            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
+        else:
+            first_message = "Hallo! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?"
         hero_title = "Willkommen"
         hero_subtitle = "Ihr KI-Assistent"
+    
+    # Get CTA text from SaaS config only and apply placeholder replacement
+    if saas_config.cta_text:
+        cta_text = replace_placeholders(saas_config.cta_text, customer_name, company_name, customer_domain, customer_email)
+    else:
+        cta_text = "Jetzt ausprobieren"
+    
     
     config = {
         "customer_name": customer_name or "",
@@ -1161,6 +1199,7 @@ def public_webapp(
         "welcome_message": welcome_message,
         "hero_title": hero_title,
         "hero_subtitle": hero_subtitle,
+        "cta_text": cta_text,
         "primary_color": primary_color,
         "secondary_color": secondary_color,
         "accent_color": accent_color,
@@ -1172,7 +1211,11 @@ def public_webapp(
         "support_email": support_email,
         "impressum_url": impressum_url,
         "privacy_url": privacy_url,
-        "terms_url": terms_url
+        "terms_url": terms_url,
+        # Powered by configuration
+        "powered_by_text": saas_config.powered_by_text,
+        "powered_by_url": saas_config.powered_by_url,
+        "powered_by_company": saas_config.powered_by_company
     }
     
     return templates.TemplateResponse(
@@ -1453,13 +1496,17 @@ def get_saas_config_internal() -> dict:
         "termsUrl": saas_config.terms_url,
         "heroTitle": saas_config.hero_title,
         "heroText": saas_config.hero_text,
+        "welcomeMessage": saas_config.welcome_message,
+        "ctaText": saas_config.cta_text,
+        "firstMessage": saas_config.first_message,
+        "calendlyLink": saas_config.calendly_link,
         "autoColorExtraction": saas_config.auto_color_extraction,
         "primaryColor": saas_config.primary_color,
         "secondaryColor": saas_config.secondary_color,
         "accentColor": saas_config.accent_color,
         "poweredByText": saas_config.powered_by_text,
         "poweredByUrl": saas_config.powered_by_url,
-        "calendlyLink": saas_config.calendly_link,
+        "poweredByCompany": saas_config.powered_by_company,
     }
 
 @app.get("/api/public-config")
@@ -1577,12 +1624,17 @@ def save_saas_config_api(
     terms_url: str = Form(""),
     hero_title: str = Form(""),
     hero_text: str = Form(""),
+    welcome_message: str = Form(""),
+    cta_text: str = Form(""),
+    first_message: str = Form(""),
+    calendly_link: str = Form(""),
     auto_color_extraction: bool = Form(True),
     primary_color: str = Form(""),
     secondary_color: str = Form(""),
     accent_color: str = Form(""),
     powered_by_text: str = Form(""),
     powered_by_url: str = Form(""),
+    powered_by_company: str = Form(""),
 ) -> dict:
     """Save SaaS configuration."""
     try:
@@ -1597,12 +1649,17 @@ def save_saas_config_api(
             terms_url=terms_url,
             hero_title=hero_title,
             hero_text=hero_text,
+            welcome_message=welcome_message,
+            cta_text=cta_text,
+            first_message=first_message,
+            calendly_link=calendly_link,
             auto_color_extraction=auto_color_extraction,
             primary_color=primary_color,
             secondary_color=secondary_color,
             accent_color=accent_color,
             powered_by_text=powered_by_text,
             powered_by_url=powered_by_url,
+            powered_by_company=powered_by_company,
         )
         
         # Save configuration

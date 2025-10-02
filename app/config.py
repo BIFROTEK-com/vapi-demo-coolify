@@ -155,6 +155,20 @@ class SaaSConfig(BaseModel):
         description="Hero section text"
     )
     
+    # Additional Content
+    welcome_message: str = Field(
+        default="",
+        description="Welcome message text"
+    )
+    cta_text: str = Field(
+        default="",
+        description="Call-to-Action button text"
+    )
+    first_message: str = Field(
+        default="",
+        description="First chat message from assistant"
+    )
+    
     # Additional Branding
     powered_by_text: str = Field(
         default="",
@@ -163,6 +177,10 @@ class SaaSConfig(BaseModel):
     powered_by_url: str = Field(
         default="",
         description="Powered by URL in footer"
+    )
+    powered_by_company: str = Field(
+        default="",
+        description="Powered by company name"
     )
     
     # Contact Information
