@@ -4,9 +4,9 @@
 .env.production
 .env.backup
 .env.backup2
+.env copy
 .env.*
 !.env.example
-!.env copy
 
 # Python
 __pycache__/
