@@ -24,6 +24,8 @@ let reconnectDelay = 1000; // Start with 1 second
  */
 function startMessagePolling(sessionId) {
     console.log(`❌ Message polling PERMANENTLY DISABLED - ONLY SSE allowed for session: ${sessionId}`);
+    // Stop any existing polling
+    stopMessagePolling();
     return; // PERMANENTLY DISABLED - Only use SSE
     
     currentSessionId = sessionId;
@@ -79,7 +81,7 @@ function markUserActivity() {
     // Reset chat activity after 5 minutes of no chat
     setTimeout(() => {
         isChatActive = false;
-        console.log('💤 Chat activity timeout - marked as inactive');
+        // console.log('💤 Chat activity timeout - marked as inactive');
     }, 300000); // 5 minutes
 }
 
@@ -361,21 +363,21 @@ function generateSessionId() {
 // Auto-initialization function that can be called multiple times
 function initializeMessagePolling() {
     if (currentSessionId) {
-        console.log('🔄 Message polling already initialized');
+        console.log('🔄 Message polling already initialized (but disabled)');
         return true;
     }
     
-    console.log('🔄 Initializing message polling...');
+    console.log('🔄 Message polling initialization disabled - using SSE only');
     
     if (window.VAPI_CONFIG && window.VAPI_CONFIG.browserSessionId) {
         currentSessionId = window.VAPI_CONFIG.browserSessionId;
-        console.log(`🆔 Using VAPI_CONFIG.browserSessionId: ${currentSessionId}`);
-        startMessagePolling(currentSessionId);
+        console.log(`🆔 Using VAPI_CONFIG.browserSessionId: ${currentSessionId} (SSE only)`);
+        // startMessagePolling(currentSessionId); // DISABLED - SSE only
         return true;
     } else if (window.BROWSER_SESSION_ID) {
         currentSessionId = window.BROWSER_SESSION_ID;
-        console.log(`🆔 Using legacy BROWSER_SESSION_ID: ${currentSessionId}`);
-        startMessagePolling(currentSessionId);
+        console.log(`🆔 Using legacy BROWSER_SESSION_ID: ${currentSessionId} (SSE only)`);
+        // startMessagePolling(currentSessionId); // DISABLED - SSE only
         return true;
     }
     
@@ -409,7 +411,7 @@ document.addEventListener('DOMContentLoaded', function() {
     [1000, 3000, 5000, 10000].forEach(delay => {
         setTimeout(() => {
             if (!currentSessionId) {
-                console.log(`🔄 Backup retry after ${delay}ms...`);
+                // console.log(`🔄 Backup retry after ${delay}ms...`);
                 initializeMessagePolling();
             }
         }, delay);
@@ -423,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Also try initialization when window is fully loaded
 window.addEventListener('load', function() {
-    console.log('🔄 Window fully loaded - trying message polling init');
+    // console.log('🔄 Window fully loaded - trying message polling init');
     setTimeout(() => {
         if (!currentSessionId) {
             initializeMessagePolling();
@@ -442,8 +444,8 @@ function startMessagePollingWhenReady() {
     const sessionId = window.VAPI_CONFIG?.browserSessionId || window.BROWSER_SESSION_ID;
     if (sessionId && !currentSessionId) {
         currentSessionId = sessionId;
-        console.log(`🆔 Starting message polling with session ID: ${currentSessionId}`);
-        startMessagePolling(currentSessionId);
+        console.log(`🆔 Message polling disabled - using SSE only for session: ${currentSessionId}`);
+        // startMessagePolling(currentSessionId); // DISABLED - SSE only
     }
 }
 

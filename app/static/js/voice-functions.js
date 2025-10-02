@@ -745,7 +745,7 @@ window.sendMessageToWebhook = sendMessageToWebhook;
 
 // Additional safety: Setup on window load as final fallback
 window.addEventListener('load', function() {
-    console.log('🌐 Window loaded - final VAPI setup check...');
+    // console.log('🌐 Window loaded - final VAPI setup check...');
     
     setTimeout(() => {
         const vapi = window.vapi || window.vapiInstance || window.vapiSDK?.vapi;

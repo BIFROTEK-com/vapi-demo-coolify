@@ -97,7 +97,7 @@ function initializeVapiWidget() {
             attempts.forEach((delay, index) => {
                 setTimeout(() => {
                     if (typeof setupVoiceEventListeners === 'function') {
-                        console.log(`🎯 Setting up VAPI Event Listeners (attempt ${index + 1})...`);
+                        // console.log(`🎯 Setting up VAPI Event Listeners (attempt ${index + 1})...`);
                         setupVoiceEventListeners();
                     } else if (index === attempts.length - 1) {
                         console.error('❌ Failed to setup VAPI Event Listeners - setupVoiceEventListeners function not found');
