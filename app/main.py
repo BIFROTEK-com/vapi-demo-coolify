@@ -488,9 +488,8 @@ async def message_stream(browser_session_id: str):
                     
                 # Only delete messages if they were actually sent via SSE
                 if messages and redis_service.is_connected():
-                    # Don't delete immediately - let them persist for a bit to ensure delivery
-                    # await redis_service.redis_client.delete(f"session_messages:{browser_session_id}")
-                    print(f"📧 SSE: Sent {len(messages)} messages (keeping in Redis for now)")
+                    await redis_service.redis_client.delete(f"session_messages:{browser_session_id}")
+                    print(f"🗑️ SSE: Cleared {len(messages)} messages after successful send")
 
                 # Heartbeat every 15 seconds to keep proxies from buffering/closing
                 heartbeat_counter += 1
@@ -499,8 +498,8 @@ async def message_stream(browser_session_id: str):
                     yield ": keep-alive\n\n"
                     heartbeat_counter = 0
 
-                # Check for new messages more frequently to reduce delay
-                await asyncio.sleep(0.1)
+                # Check for new messages every 1 second - robust and efficient
+                await asyncio.sleep(1)
         except asyncio.CancelledError:
             if browser_session_id in active_connections:
                 del active_connections[browser_session_id]
