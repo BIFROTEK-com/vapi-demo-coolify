@@ -1215,7 +1215,8 @@ def public_webapp(
         # Powered by configuration
         "powered_by_text": saas_config.powered_by_text,
         "powered_by_url": saas_config.powered_by_url,
-        "powered_by_company": saas_config.powered_by_company
+        "powered_by_company": saas_config.powered_by_company,
+        "powered_by_logo": saas_config.powered_by_logo
     }
     
     return templates.TemplateResponse(
