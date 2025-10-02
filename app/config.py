@@ -182,6 +182,10 @@ class SaaSConfig(BaseModel):
         default="",
         description="Powered by company name"
     )
+    powered_by_logo: str = Field(
+        default="",
+        description="Powered by logo URL"
+    )
     
     # Contact Information
     calendly_link: str = Field(

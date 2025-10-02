@@ -1636,6 +1636,7 @@ def save_saas_config_api(
     powered_by_text: str = Form(""),
     powered_by_url: str = Form(""),
     powered_by_company: str = Form(""),
+    powered_by_logo: str = Form(""),
 ) -> dict:
     """Save SaaS configuration."""
     try:
@@ -1661,6 +1662,7 @@ def save_saas_config_api(
             powered_by_text=powered_by_text,
             powered_by_url=powered_by_url,
             powered_by_company=powered_by_company,
+            powered_by_logo=powered_by_logo,
         )
         
         # Save configuration
