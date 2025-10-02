@@ -663,10 +663,9 @@
                         <h1 class="text-2xl font-bold bg-gradient-to-r from-primary-500 to-accent bg-clip-text text-transparent">
                             {{ demo_agent_title or "KI-Assistent" | e }}
                         </h1>
-                        {% if powered_by_text and powered_by_url %}
                         <div class="flex items-center space-x-1">
-                            <span class="text-sm text-gray-600 dark:text-gray-400">{{ powered_by_text }}</span>
-                            <a href="{{ powered_by_url }}" 
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Powered by</span>
+                            <a href="{{ saas_website_url or '#' }}" 
                                target="_blank" 
                                rel="noopener noreferrer"
                                class="flex items-center space-x-1 hover:opacity-80 transition-opacity duration-200">
@@ -683,7 +682,6 @@
                                 </span>
                             </a>
                         </div>
-                        {% endif %}
                     </div>
                 </div>
                 
@@ -2232,10 +2230,9 @@
                 </div>
                 
                 <!-- Powered By -->
-                {% if powered_by_text and powered_by_url %}
                 <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ powered_by_text }}</span>
-                    <a href="{{ powered_by_url }}" 
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Powered by</span>
+                    <a href="{{ saas_website_url or '#' }}" 
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-200">
@@ -2252,7 +2249,6 @@
                         </span>
                     </a>
                 </div>
-                {% endif %}
             </div>
         </div>
     </footer>
