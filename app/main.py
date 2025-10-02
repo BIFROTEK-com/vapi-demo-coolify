@@ -20,6 +20,30 @@ from .services.redis_service import redis_service
 from .services.shlink_service import shlink_service, ShortUrlRequest, ShortUrlResponse
 import base64
 
+def replace_placeholders(text: str, customer_name: str = "", company_name: str = "", customer_domain: str = "", customer_email: str = "") -> str:
+    """
+    Replace placeholders in text with actual values.
+    
+    Args:
+        text: Text containing placeholders like {customer_name}
+        customer_name: Customer name to replace {customer_name}
+        company_name: Company name to replace {company_name}
+        customer_domain: Customer domain to replace {customer_domain}
+        customer_email: Customer email to replace {customer_email}
+    
+    Returns:
+        Text with placeholders replaced
+    """
+    if not text:
+        return text
+    
+    # Replace placeholders with actual values
+    text = text.replace("{customer_name}", customer_name or "")
+    text = text.replace("{company_name}", company_name or "")
+    text = text.replace("{customer_domain}", customer_domain or "")
+    text = text.replace("{customer_email}", customer_email or "")
+    
+    return text
 
 app = FastAPI(title="VAPI Web SDK Integration")
 
@@ -1094,10 +1118,11 @@ def public_webapp(
     
     # Create personalized messages - use configured hero content if available
     if hero_title and hero_text:
-        # Use configured hero content
-        hero_subtitle = hero_text
-        welcome_message = f"Willkommen! {hero_text}"
-        first_message = f"Hallo! Ich bin Ihr KI-Assistent. {hero_text}"
+        # Use configured hero content with placeholder replacement
+        hero_title = replace_placeholders(hero_title, customer_name, company_name, customer_domain, customer_email)
+        hero_subtitle = replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)
+        welcome_message = f"Willkommen! {replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)}"
+        first_message = f"Hallo! Ich bin Ihr KI-Assistent. {replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)}"
     elif customer_name and company_name:
         welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
         first_message = f"Hallo {customer_name}! Ich bin der KI-Assistent von {company_name} und helfe Ihnen gerne bei allen Fragen. Wie kann ich Ihnen behilflich sein?"
