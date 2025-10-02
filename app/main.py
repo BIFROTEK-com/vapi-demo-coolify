@@ -1597,12 +1597,17 @@ def get_env_config() -> dict:
 def get_config_status() -> dict:
     """Check if configuration is complete and valid."""
     config = get_env_config_internal()
+    saas_config = get_saas_config_internal()
     
     # Check required VAPI credentials
     vapi_configured = bool(config.get("assistantId") and config.get("publicKey"))
     
-    # Check if we have basic company info
-    company_configured = bool(config.get("companyName") or config.get("saas_company_name"))
+    # Check if we have basic company info (from either environment or SaaS config)
+    company_configured = bool(
+        config.get("companyName") or 
+        saas_config.get("companyName") or 
+        config.get("saas_company_name")
+    )
     
     # Check if we have contact info
     contact_configured = bool(config.get("facebookBusinessWhatsApp") or config.get("calendlyLink"))
@@ -1615,7 +1620,7 @@ def get_config_status() -> dict:
         missing_items.append("VAPI Assistant ID")
     if not config.get("publicKey"):
         missing_items.append("VAPI Public Key")
-    if not config.get("companyName") and not config.get("saas_company_name"):
+    if not (config.get("companyName") or saas_config.get("companyName") or config.get("saas_company_name")):
         missing_items.append("Company Name")
     if not contact_configured:
         missing_items.append("Contact Information (WhatsApp or Calendly)")
@@ -1626,7 +1631,8 @@ def get_config_status() -> dict:
         "companyConfigured": company_configured,
         "contactConfigured": contact_configured,
         "missingItems": missing_items,
-        "config": config
+        "config": config,
+        "saas_config": saas_config
     }
 
 
