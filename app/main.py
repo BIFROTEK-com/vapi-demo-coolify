@@ -1119,64 +1119,29 @@ def public_webapp(
     # Personalized configuration based on parameters
     demo_agent_title = f"{company_name} KI-Assistent"
     
-    # Create personalized messages - use configured hero content if available
-    if hero_title and hero_text:
-        # Use configured hero content with placeholder replacement
-        hero_title = replace_placeholders(hero_title, customer_name, company_name, customer_domain, customer_email)
-        hero_subtitle = replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)
-        
-        # Use configured welcome message if available, otherwise use hero_text
-        if saas_config.welcome_message:
-            welcome_message = replace_placeholders(saas_config.welcome_message, customer_name, company_name, customer_domain, customer_email)
-        else:
-            welcome_message = replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)
-        
-        # Use configured first message if available, otherwise generate from hero_text
-        if saas_config.first_message:
-            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
-        else:
-            first_message = f"Hallo! Ich bin Ihr KI-Assistent. {replace_placeholders(hero_text, customer_name, company_name, customer_domain, customer_email)}"
-    elif customer_name and company_name:
-        if saas_config.welcome_message:
-            welcome_message = replace_placeholders(saas_config.welcome_message, customer_name, company_name, customer_domain, customer_email)
-        else:
-            welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
-        if saas_config.first_message:
-            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
-        else:
-            first_message = f"Hallo {customer_name}! Ich bin der KI-Assistent von {company_name} und helfe Ihnen gerne bei allen Fragen. Wie kann ich Ihnen behilflich sein?"
-        if saas_config.hero_title:
-            hero_title = replace_placeholders(saas_config.hero_title, customer_name, company_name, customer_domain, customer_email)
-        else:
-            hero_title = f"Hallo {customer_name}!"
-        if saas_config.hero_text:
-            hero_subtitle = replace_placeholders(saas_config.hero_text, customer_name, company_name, customer_domain, customer_email)
-        else:
-            hero_subtitle = f"Ihr persönlicher KI-Assistent für {company_name}"
-    elif customer_name:
-        welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Ihre Fragen."
-        if saas_config.first_message:
-            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
-        else:
-            first_message = f"Hallo {customer_name}! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?"
-        hero_title = f"Hallo {customer_name}!"
-        hero_subtitle = "Ihr persönlicher KI-Assistent"
-    elif company_name:
-        welcome_message = f"Willkommen! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}."
-        if saas_config.first_message:
-            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
-        else:
-            first_message = f"Hallo! Ich bin der KI-Assistent von {company_name}. Wie kann ich Ihnen helfen?"
-        hero_title = f"Willkommen bei {company_name}"
-        hero_subtitle = "Ihr KI-Assistent"
+    # ALWAYS use configured content first, then fallback to defaults
+    # Hero content from config with placeholder replacement
+    if saas_config.hero_title:
+        hero_title = replace_placeholders(saas_config.hero_title, customer_name, company_name, customer_domain, customer_email)
     else:
-        welcome_message = "Willkommen! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Ihre Fragen."
-        if saas_config.first_message:
-            first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
-        else:
-            first_message = "Hallo! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?"
-        hero_title = "Willkommen"
-        hero_subtitle = "Ihr KI-Assistent"
+        hero_title = f"Hallo {customer_name}!" if customer_name else "Willkommen"
+    
+    if saas_config.hero_text:
+        hero_subtitle = replace_placeholders(saas_config.hero_text, customer_name, company_name, customer_domain, customer_email)
+    else:
+        hero_subtitle = f"Ihr persönlicher KI-Assistent für {company_name}" if company_name else "Ihr KI-Assistent"
+    
+    # Welcome message from config
+    if saas_config.welcome_message:
+        welcome_message = replace_placeholders(saas_config.welcome_message, customer_name, company_name, customer_domain, customer_email)
+    else:
+        welcome_message = f"Willkommen {customer_name}! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt. Stellen Sie dem KI-Assistenten Fragen über {company_name}." if customer_name and company_name else "Willkommen! Wir haben einen KI-Agenten für Sie zum Ausprobieren erstellt."
+    
+    # First message from config
+    if saas_config.first_message:
+        first_message = replace_placeholders(saas_config.first_message, customer_name, company_name, customer_domain, customer_email)
+    else:
+        first_message = f"Hallo {customer_name}! Ich bin der KI-Assistent von {company_name} und helfe Ihnen gerne bei allen Fragen. Wie kann ich Ihnen behilflich sein?" if customer_name and company_name else "Hallo! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?"
     
     # Get CTA text from SaaS config only and apply placeholder replacement
     if saas_config.cta_text:
