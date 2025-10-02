@@ -715,14 +715,16 @@
         <section class="text-center mb-12 animate-fade-in">
             <!-- Company Name über Hero Text -->
             {% if company_name %}
-            <div class="mb-4">
-                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+            <div class="mb-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mb-3">
                     {{ company_name | e }}
                 </h1>
                 <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-accent mx-auto rounded-full"></div>
             </div>
             {% endif %}
             
+            <!-- Hero Title nur anzeigen wenn es nicht leer ist und nicht BIFROTEK -->
+            {% if hero_title and hero_title != "BIFROTEK" and hero_title != company_name %}
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 {{ hero_title | e }}
                 <br class="hidden md:block">
@@ -730,6 +732,15 @@
                     {{ hero_subtitle | e }}
                 </span>
             </h2>
+            {% elif hero_subtitle %}
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                <span class="bg-gradient-to-r from-primary-600 to-accent bg-clip-text text-transparent">
+                    {{ hero_subtitle | e }}
+                </span>
+            </h2>
+            {% endif %}
+            
+            <!-- Welcome Message nur einmal anzeigen -->
             <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
                 {{ welcome_message | e }}
             </p>
