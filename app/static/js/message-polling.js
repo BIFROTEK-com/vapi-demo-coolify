@@ -14,14 +14,17 @@ let consecutiveEmptyPolls = 0;
 let isVoiceActive = false;
 let isChatActive = false;
 let isPaused = false; // Complete pause when idle
+let eventSource = null; // SSE EventSource
+let reconnectAttempts = 0;
+let maxReconnectAttempts = 10;
+let reconnectDelay = 1000; // Start with 1 second
 
 /**
  * Initialize message polling for a session
  */
 function startMessagePolling(sessionId) {
-    console.log(`🔄 Starting message polling for session: ${sessionId}`);
-    // Temporarily re-enable polling for testing
-    // TODO: Fix SSE and disable polling again
+    console.log(`❌ Message polling PERMANENTLY DISABLED - ONLY SSE allowed for session: ${sessionId}`);
+    return; // PERMANENTLY DISABLED - Only use SSE
     
     currentSessionId = sessionId;
     

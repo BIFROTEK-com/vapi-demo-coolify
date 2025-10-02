@@ -1040,7 +1040,8 @@ def public_webapp(
         saas_config.secondary_color and saas_config.secondary_color != "#3a0ca3",
         saas_config.accent_color and saas_config.accent_color != "#4cc9f0",
         saas_config.powered_by_text,
-        saas_config.powered_by_url
+        saas_config.powered_by_url,
+        saas_config.calendly_link
     ])
     
     if saas_has_data:
@@ -1059,6 +1060,7 @@ def public_webapp(
         accent_color = saas_config.accent_color
         powered_by_text = saas_config.powered_by_text
         powered_by_url = saas_config.powered_by_url
+        calendly_link = saas_config.calendly_link
     else:
         # Use environment variables
         saas_company_name = os.getenv("COMPANY_NAME", "")
@@ -1433,6 +1435,7 @@ def get_env_saas_config_internal() -> dict:
         "accentColor": os.getenv("ACCENT_COLOR", "#4cc9f0"),
         "poweredByText": os.getenv("POWERED_BY_TEXT", ""),
         "poweredByUrl": os.getenv("POWERED_BY_URL", ""),
+        "calendlyLink": os.getenv("CALENDLY_LINK", ""),
     }
 
 
@@ -1456,6 +1459,7 @@ def get_saas_config_internal() -> dict:
         "accentColor": saas_config.accent_color,
         "poweredByText": saas_config.powered_by_text,
         "poweredByUrl": saas_config.powered_by_url,
+        "calendlyLink": saas_config.calendly_link,
     }
 
 @app.get("/api/public-config")
@@ -1486,7 +1490,8 @@ def get_public_config() -> dict:
             saas_config["secondaryColor"] and saas_config["secondaryColor"] != "#3a0ca3", 
             saas_config["accentColor"] and saas_config["accentColor"] != "#4cc9f0",
             saas_config["poweredByText"],
-            saas_config["poweredByUrl"]
+            saas_config["poweredByUrl"],
+            saas_config["calendlyLink"]
         ])
         
         if saas_has_data:
@@ -1514,6 +1519,7 @@ def get_public_config() -> dict:
                 "accentColor": saas_config["accentColor"],
                 "poweredByText": saas_config["poweredByText"],
                 "poweredByUrl": saas_config["poweredByUrl"],
+                "calendlyLink": saas_config["calendlyLink"],
             }
         else:
             # Use environment variables completely
@@ -1540,6 +1546,7 @@ def get_public_config() -> dict:
                 "accentColor": env_saas_config["accentColor"],
                 "poweredByText": env_saas_config["poweredByText"],
                 "poweredByUrl": env_saas_config["poweredByUrl"],
+                "calendlyLink": env_saas_config["calendlyLink"],
             }
     except Exception as e:
         return {"error": "Configuration not available"}

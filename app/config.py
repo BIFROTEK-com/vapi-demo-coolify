@@ -164,6 +164,12 @@ class SaaSConfig(BaseModel):
         default="https://bifrotek.com",
         description="Powered by URL in footer"
     )
+    
+    # Contact Information
+    calendly_link: str = Field(
+        default="",
+        description="Calendly Link for appointments"
+    )
 
 
 _cached_settings: AppSettings | None = None
