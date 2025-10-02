@@ -443,6 +443,99 @@
             </div>
         </div>
 
+        <!-- URL Platzhalter Sektion -->
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 border border-blue-200 dark:border-gray-600 animate-slide-up" style="animation-delay: 0.2s;">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">URL Platzhalter</h3>
+            </div>
+            
+            <div class="space-y-4">
+                <p class="text-gray-600 dark:text-gray-300 mb-6">
+                    Verwenden Sie diese Platzhalter in Ihrer Webapp-URL, um die Konfiguration dynamisch zu übergeben:
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- URL Parameter -->
+                    <div class="space-y-3">
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-600 pb-2">URL Parameter</h4>
+                        
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <span class="font-mono text-sm text-gray-700 dark:text-gray-300">customer_domain</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">Domain des Kunden</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <span class="font-mono text-sm text-gray-700 dark:text-gray-300">customer_name</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">Name des Kunden</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <span class="font-mono text-sm text-gray-700 dark:text-gray-300">customer_email</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">E-Mail des Kunden</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <span class="font-mono text-sm text-gray-700 dark:text-gray-300">company_name</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">Firmenname (überschreibt SaaS-Config)</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <span class="font-mono text-sm text-gray-700 dark:text-gray-300">logo_url</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">Logo URL (überschreibt SaaS-Config)</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <span class="font-mono text-sm text-gray-700 dark:text-gray-300">primary_color</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">Primärfarbe (überschreibt SaaS-Config)</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <span class="font-mono text-sm text-gray-700 dark:text-gray-300">secondary_color</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">Sekundärfarbe (überschreibt SaaS-Config)</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <span class="font-mono text-sm text-gray-700 dark:text-gray-300">welcome_message</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">Willkommensnachricht (überschreibt SaaS-Config)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Beispiel URL -->
+                    <div class="space-y-3">
+                        <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-600 pb-2">Beispiel URL</h4>
+                        
+                        <div class="p-4 bg-gray-900 dark:bg-gray-800 rounded-lg border border-gray-700">
+                            <code class="text-green-400 text-sm break-all">
+                                https://ihre-domain.com/webapp?<br>
+                                customer_domain=google.com&<br>
+                                customer_name=Google&<br>
+                                customer_email=test@google.com&<br>
+                                company_name=Google&<br>
+                                logo_url=https://logo.clearbit.com/google.com&<br>
+                                primary_color=%234285f4&<br>
+                                secondary_color=%2334a853&<br>
+                                welcome_message=Ihr%20KI-Assistent%20f%C3%BCr%20intelligente%20L%C3%B6sungen
+                            </code>
+                        </div>
+                        
+                        <div class="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700">
+                            <p class="text-sm text-yellow-800 dark:text-yellow-200">
+                                <strong>💡 Tipp:</strong> URL-Parameter überschreiben die SaaS-Konfiguration. 
+                                Verwenden Sie URL-Encoding für Sonderzeichen (%20 für Leerzeichen, %C3%BC für ü, etc.)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style="animation-delay: 0.3s;">
             <button id="saveConfig" 
