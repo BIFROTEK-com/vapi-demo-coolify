@@ -145,6 +145,7 @@
             eventSource.onopen = function() {
                 console.log('✅ Message stream connected');
                 window._messageStreamRetries = 0;
+                window._lastHeartbeat = Date.now();
             };
             
             eventSource.onmessage = function(event) {
@@ -166,10 +167,10 @@
             
             eventSource.onerror = function(event) {
                 console.error('❌ Message stream error:', event);
-                // Exponential backoff reconnect, max 30s
+                // Aggressive reconnect with exponential backoff
                 const retries = (window._messageStreamRetries || 0) + 1;
                 window._messageStreamRetries = retries;
-                const delay = Math.min(30000, 1000 * Math.pow(2, Math.min(retries, 5)));
+                const delay = Math.min(5000, 1000 * Math.pow(1.5, Math.min(retries, 3))); // Max 5s, faster reconnect
                 try { eventSource.close(); } catch (_) {}
                 setTimeout(() => {
                     console.log(`🔄 Reconnecting message stream (attempt ${retries})...`);
@@ -179,6 +180,17 @@
             
             // Store event source for cleanup
             window.messageEventSource = eventSource;
+            
+            // Heartbeat monitor - check every 10 seconds if connection is alive
+            window._heartbeatMonitor = setInterval(() => {
+                const now = Date.now();
+                const lastHeartbeat = window._lastHeartbeat || 0;
+                if (now - lastHeartbeat > 20000) { // 20 seconds without heartbeat
+                    console.warn('⚠️ No heartbeat for 20s, reconnecting...');
+                    try { eventSource.close(); } catch (_) {}
+                    setTimeout(() => startMessageStream(browserSessionId), 1000);
+                }
+            }, 10000);
         }
         
         // Initialize app when page loads - this will be defined by event-listeners.js loaded later
