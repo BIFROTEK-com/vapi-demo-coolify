@@ -253,8 +253,30 @@
                         </div>
                     </div>
 
-                    <!-- Primary Color -->
+                    <!-- Color Extraction Switch -->
                     <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Farb-Extraktion
+                        </label>
+                        <div class="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50">
+                            <div class="flex-1">
+                                <h4 class="text-sm font-medium text-gray-900 dark:text-white">Automatische Farb-Extraktion</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                    Farben automatisch vom Customer-Logo/Domain extrahieren
+                                </p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" 
+                                       id="autoColorExtraction"
+                                       class="sr-only peer"
+                                       checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Primary Color -->
+                    <div class="space-y-3" id="colorFields">
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
                             Primärfarbe
                         </label>
@@ -491,6 +513,26 @@
             localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
         });
 
+        // Color Extraction Switch
+        const autoColorExtraction = document.getElementById('autoColorExtraction');
+        const colorFields = document.getElementById('colorFields');
+        
+        // Toggle color fields visibility based on switch
+        function toggleColorFields() {
+            if (autoColorExtraction.checked) {
+                colorFields.style.opacity = '0.5';
+                colorFields.style.pointerEvents = 'none';
+            } else {
+                colorFields.style.opacity = '1';
+                colorFields.style.pointerEvents = 'auto';
+            }
+        }
+        
+        autoColorExtraction.addEventListener('change', toggleColorFields);
+        
+        // Initialize on page load
+        toggleColorFields();
+
         // Color Input Synchronization
         const primaryColor = document.getElementById('primaryColor');
         const primaryColorText = document.getElementById('primaryColorText');
@@ -675,12 +717,16 @@
                 document.getElementById('saasPrivacyUrl').value = data.privacyPolicyUrl || '';
                 document.getElementById('saasTermsUrl').value = data.termsUrl || '';
                 document.getElementById('logoUrl').value = data.logoUrl || '';
+                document.getElementById('autoColorExtraction').checked = data.autoColorExtraction !== false;
                 document.getElementById('primaryColor').value = data.primaryColor || '#4361ee';
                 document.getElementById('primaryColorText').value = data.primaryColor || '#4361ee';
                 document.getElementById('secondaryColor').value = data.secondaryColor || '#3a0ca3';
                 document.getElementById('secondaryColorText').value = data.secondaryColor || '#3a0ca3';
                 document.getElementById('companyName').value = data.companyName || '';
                 document.getElementById('welcomeMessage').value = data.heroText || '';
+                
+                // Update color fields visibility
+                toggleColorFields();
             } catch (error) {
                 console.error('Error loading SaaS config:', error);
             }
@@ -707,6 +753,7 @@
                     privacy_policy_url: document.getElementById('saasPrivacyUrl').value,
                     terms_url: document.getElementById('saasTermsUrl').value,
                     logo_url: document.getElementById('logoUrl').value,
+                    auto_color_extraction: document.getElementById('autoColorExtraction').checked,
                     primary_color: document.getElementById('primaryColor').value,
                     secondary_color: document.getElementById('secondaryColor').value,
                     accent_color: document.getElementById('secondaryColor').value, // Using secondary as accent for now

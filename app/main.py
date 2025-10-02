@@ -1074,8 +1074,9 @@ def public_webapp(
             company_name = "VAPI"
     
     # Brand colors are already loaded above (either from SaaS config or environment)
-    # If no colors set, try to extract from customer domain
-    if customer_domain and clean_domain and not primary_color:
+    # If auto color extraction is enabled, try to extract from customer domain
+    if (saas_config.auto_color_extraction and 
+        customer_domain and clean_domain):
         try:
             # Extract brand colors using the color extractor service
             extracted_primary, extracted_secondary, extracted_accent = extract_brand_colors(clean_domain)
@@ -1084,8 +1085,8 @@ def public_webapp(
             accent_color = extracted_accent
             print(f"✅ Brand colors extracted for {clean_domain}: {primary_color}, {secondary_color}, {accent_color}")
         except Exception as e:
-            print(f"⚠️ Color extraction failed for {clean_domain}: {e}, using defaults")
-            # Keep default colors
+            print(f"⚠️ Color extraction failed for {clean_domain}: {e}, using configured colors")
+            # Keep configured colors (don't change them)
 
     # Generate multiple logo URLs with fallbacks (only if domain is provided)
     # Clearbit has priority 1 for high-quality logos
@@ -1434,6 +1435,7 @@ def get_saas_config_internal() -> dict:
         "termsUrl": saas_config.terms_url,
         "heroTitle": saas_config.hero_title,
         "heroText": saas_config.hero_text,
+        "autoColorExtraction": saas_config.auto_color_extraction,
         "primaryColor": saas_config.primary_color,
         "secondaryColor": saas_config.secondary_color,
         "accentColor": saas_config.accent_color,
@@ -1553,6 +1555,7 @@ def save_saas_config_api(
     terms_url: str = Form(""),
     hero_title: str = Form(""),
     hero_text: str = Form(""),
+    auto_color_extraction: bool = Form(True),
     primary_color: str = Form(""),
     secondary_color: str = Form(""),
     accent_color: str = Form(""),
@@ -1572,6 +1575,7 @@ def save_saas_config_api(
             terms_url=terms_url,
             hero_title=hero_title,
             hero_text=hero_text,
+            auto_color_extraction=auto_color_extraction,
             primary_color=primary_color,
             secondary_color=secondary_color,
             accent_color=accent_color,

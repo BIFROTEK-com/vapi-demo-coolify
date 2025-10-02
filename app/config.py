@@ -128,6 +128,10 @@ class SaaSConfig(BaseModel):
     )
     
     # Brand Colors
+    auto_color_extraction: bool = Field(
+        default=True,
+        description="Enable automatic color extraction from customer logo/domain"
+    )
     primary_color: str = Field(
         default="#4361ee",
         description="Primary brand color (hex)"
