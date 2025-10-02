@@ -582,20 +582,9 @@ async def vapi_send_message_webhook(request: Request):
         print(f"❌ VAPI Tool-Call Error: {e}")
         return {"error": str(e)}
 
-@app.post("/webhook/vapi/send-message", response_model=WebhookResponse)
-async def vapi_send_message_webhook(request: Request) -> WebhookResponse:
-    """
-    Spezieller Webhook für VAPI Tool-Calls und send() Nachrichten.
-    
-    Empfängt Tool-Calls vom VAPI Assistant und verarbeitet sie,
-    umgeht den Transcriber für saubere Links und Formatierung.
-    
-    WICHTIG: Unterstützt Session-Identifikation für Multi-User-Szenarien.
-    """
-    try:
-        # Raw request body lesen
-        body = await request.body()
-        webhook_data = json.loads(body)
+# REMOVED DUPLICATE WEBHOOK - Using the first one above
+# @app.post("/webhook/vapi/send-message", response_model=WebhookResponse)
+# async def vapi_send_message_webhook(request: Request) -> WebhookResponse:
         
         print(f"\n{'='*80}")
         print(f"📨 VAPI WEBHOOK RECEIVED: {webhook_data}")
@@ -2109,8 +2098,21 @@ async def health_check():
         "redis": redis_info
     }
 
-@app.get("/api/messages-OLD-DISABLED/{session_id}")
-async def get_session_messages_OLD_DISABLED(session_id: str):
+@app.get("/api/debug/redis-keys")
+async def debug_redis_keys():
+    """Debug endpoint to see all Redis keys."""
+    try:
+        if not redis_service.is_connected():
+            return {"error": "Redis not connected"}
+        
+        # Get all keys with pattern session_messages:*
+        keys = await redis_service.redis_client.keys("session_messages:*")
+        return {"keys": keys, "count": len(keys)}
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/api/get-messages/{session_id}")
+async def get_session_messages(session_id: str):
     """Get messages for a specific session."""
     try:
         messages = await redis_service.get_session_messages(session_id)

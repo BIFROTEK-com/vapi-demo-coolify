@@ -19,10 +19,9 @@ let isPaused = false; // Complete pause when idle
  * Initialize message polling for a session
  */
 function startMessagePolling(sessionId) {
-    console.log(`❌ Message polling PERMANENTLY DISABLED - ONLY SSE allowed for session: ${sessionId}`);
-    // EINZIGER WEG: VAPI → Redis → SSE → Frontend  
-    // Kein Polling mehr - nur SSE EventSource
-    return;
+    console.log(`🔄 Starting message polling for session: ${sessionId}`);
+    // Temporarily re-enable polling for testing
+    // TODO: Fix SSE and disable polling again
     
     currentSessionId = sessionId;
     
