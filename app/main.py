@@ -491,15 +491,15 @@ async def message_stream(browser_session_id: str):
                     await redis_service.redis_client.delete(f"session_messages:{browser_session_id}")
                     print(f"🗑️ SSE: Cleared {len(messages)} messages after successful send")
 
-                       # Heartbeat every 5 seconds to keep proxies from buffering/closing
-                       heartbeat_counter += 1
-                       if heartbeat_counter >= 5:
-                           # Comment line per SSE spec (ignored by clients), helps flush buffers
-                           yield ": keep-alive\n\n"
-                           heartbeat_counter = 0
+                # Heartbeat every 5 seconds to keep proxies from buffering/closing
+                heartbeat_counter += 1
+                if heartbeat_counter >= 5:
+                    # Comment line per SSE spec (ignored by clients), helps flush buffers
+                    yield ": keep-alive\n\n"
+                    heartbeat_counter = 0
 
-                       # Check for new messages every 3 seconds - balanced performance
-                       await asyncio.sleep(3)
+                # Check for new messages every 3 seconds - balanced performance
+                await asyncio.sleep(3)
         except asyncio.CancelledError:
             if browser_session_id in active_connections:
                 del active_connections[browser_session_id]
