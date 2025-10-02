@@ -598,6 +598,19 @@
                                class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
                     </div>
                 </div>
+                
+                <div class="mt-6">
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            Powered By Logo URL
+                        </label>
+                        <input type="url" 
+                               id="poweredByLogo"
+                               placeholder="https://bifrotek.com/logo.png"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">URL zum Logo für "Powered by" Bereich</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -987,6 +1000,7 @@
                 document.getElementById('poweredByText').value = data.poweredByText || '';
                 document.getElementById('poweredByUrl').value = data.poweredByUrl || '';
                 document.getElementById('poweredByCompany').value = data.poweredByCompany || '';
+                document.getElementById('poweredByLogo').value = data.poweredByLogo || '';
                 
                 // Update color fields visibility
                 toggleColorFields();
@@ -1028,7 +1042,8 @@
                     first_message: document.getElementById('firstMessage').value,
                     powered_by_text: document.getElementById('poweredByText').value,
                     powered_by_url: document.getElementById('poweredByUrl').value,
-                    powered_by_company: document.getElementById('poweredByCompany').value
+                    powered_by_company: document.getElementById('poweredByCompany').value,
+                    powered_by_logo: document.getElementById('poweredByLogo').value
                 };
 
                 const response = await fetch('/api/saas-config', {
